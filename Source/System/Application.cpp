@@ -42,20 +42,20 @@ void Application::Update(void)
 
 	PixelShader pixelShader_("Assets/ShaderBinary/Pixel/TestOrigin.pso");
 
-	//auto constantBuffer = std::make_shared<ConstantBuffer<TestConstantBuffer>>();
-	//pixelShader_.SetConstantBuffer(constantBuffer, 0);
+	auto constantBuffer = std::make_shared<ConstantBuffer<TestConstantBuffer>>();
+	pixelShader_.SetConstantBuffer(constantBuffer, 0);
 
-	//std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 
 	while (!ProcessMessage() && !CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		SetDrawScreen(DX_SCREEN_BACK);
 		ClsDrawScreen();
 
-		//auto time = static_cast<float>(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now() - start).count()) / 1000000000;
+		auto time = static_cast<float>(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now() - start).count()) / 1000000000;
 
-		//constantBuffer->GetValue() = { time };
-		//constantBuffer->Update();
+		constantBuffer->GetValue() = { time };
+		constantBuffer->Update();
 
 		image.Draw(0.0f, 0.0f, pixelShader_);
 
