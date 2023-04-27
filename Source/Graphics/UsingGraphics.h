@@ -8,6 +8,6 @@ template<class T>
 class ConstantBuffer;
 
 template<class T>
-using ConstantBufferPtr = ConstantBuffer<T>;
-using ConstantBufferBaseWeakPtr = std::weak_ptr<ConstantBufferBase>;
+using ConstantBufferPtr = std::shared_ptr<ConstantBuffer<T>>;
+using ConstantBufferBaseWeakPtr = std::weak_ptr<ConstantBufferBase>;		//ConstantBufferBaseの弱参照
 

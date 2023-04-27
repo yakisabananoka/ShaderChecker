@@ -21,7 +21,7 @@ public:
 };
 
 /// @brief 定数バッファ
-/// @tparam T 転送したい値の型
+/// @tparam T 転送したい値の型(型のサイズを16の倍数にする必要アリ)
 template<class T>
 class ConstantBuffer :
 	public ConstantBufferBase
