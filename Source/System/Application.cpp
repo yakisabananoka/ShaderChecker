@@ -38,7 +38,7 @@ void Application::Update(void)
 		float time;				//経過時間
 		float padding[3];		//パディング
 	};
-	const Image image("Assets/Image/chimoshii.png");							//画像オブジェクト生成
+	const Image image("Assets/Image/food_udon_goboten.png");							//画像オブジェクト生成
 
 	PixelShader pixelShader_("Assets/ShaderBinary/Pixel/TestOrigin.pso");		//ピクセルシェーダーオブジェクト生成
 

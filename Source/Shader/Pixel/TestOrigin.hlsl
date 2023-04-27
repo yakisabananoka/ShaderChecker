@@ -1,17 +1,17 @@
-ï»¿#include "PixelShaderHeader.hlsli"      //ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨ã®ãƒ˜ãƒƒãƒ€ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
+#include "PixelShaderHeader.hlsli"      //ƒsƒNƒZƒ‹ƒVƒF[ƒ_[—p‚Ìƒwƒbƒ_‚ğƒCƒ“ƒNƒ‹[ƒh
 
-//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+//ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
 float4 main(PS_INPUT input) : SV_TARGET
 {
-    float4 result = tex.Sample(texSampler, input.uv);       //ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã‚‰ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’è¡Œã†
+    float4 result = tex.Sample(texSampler, input.uv);       //ƒeƒNƒXƒ`ƒƒ‚©‚çƒTƒ“ƒvƒŠƒ“ƒO‚ğs‚¤
 
-    result.r = (sin(time) + 1) / 2;     //å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«å…¥ã£ã¦ããŸçµŒéæ™‚é–“ã‚’ä½¿ç”¨ã—ã¦Rè¦ç´ ã‚’sinæ³¢ã§å¤‰å‹•ã•ã›ã‚‹
+    result.r = (sin(time) + 1) / 2;                         //’è”ƒoƒbƒtƒ@‚É“ü‚Á‚Ä‚«‚½Œo‰ßŠÔ‚ğg—p‚µ‚ÄR—v‘f‚ğsin”g‚Å•Ï“®‚³‚¹‚é
 
-    //Î±å€¤ãŒ0ã®å ´åˆã¯æç”»ã‚’è¡Œã‚ãªã„(æœ¬æ¥ã¯Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã‚ˆã‚‹é€éãŒæœ›ã¾ã—ã„)
+    //ƒ¿’l‚ª0‚Ìê‡‚Í•`‰æ‚ğs‚í‚È‚¢(–{—ˆ‚Íƒ¿ƒuƒŒƒ“ƒh‚É‚æ‚é“§‰ß‚ª–]‚Ü‚µ‚¢)
     if(result.a == 0)
     {
         discard;
     }
 
-    return result;      //çµæœå‡ºåŠ›
+    return result;      //Œ‹‰Êo—Í
 }

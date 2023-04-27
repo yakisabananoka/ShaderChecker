@@ -1,16 +1,16 @@
-ï»¿
+
 struct PS_INPUT
 {
-    float4 diffuse : COLOR0;        //æ‹¡æ•£åå°„ã®è‰²
-    float4 specular : COLOR1;       //é¡é¢åå°„ã®è‰²
-    float2 uv : TEXCOORD0;          //UVå€¤
-    float2 suv : TEXCOORD1;         //ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®UVå€¤
+    float4 diffuse : COLOR0;        //ŠgU”½Ë‚ÌF
+    float4 specular : COLOR1;       //‹¾–Ê”½Ë‚ÌF
+    float2 uv : TEXCOORD0;          //UV’l
+    float2 suv : TEXCOORD1;         //ƒTƒuƒeƒNƒXƒ`ƒƒ‚ÌUV’l
 };
 
 cbuffer Test : register(b0)
 {
-    float time;     //çµŒéæ™‚é–“
+    float time;     //Œo‰ßŠÔ
 }
 
-Texture2D tex : register(t0);               //ãƒ†ã‚¯ã‚¹ãƒãƒ£
-SamplerState texSampler : register(s0);     //ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
+Texture2D tex : register(t0);               //ƒeƒNƒXƒ`ƒƒ
+SamplerState texSampler : register(s0);     //ƒTƒ“ƒvƒ‰[
