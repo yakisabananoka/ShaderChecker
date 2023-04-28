@@ -23,7 +23,7 @@ void Image::Draw(float x, float y, bool transFlg) const
 void Image::Draw(float x, float y, const PixelShader& pixelShader) const
 {
 	float sizeX, sizeY = {};
-	GetGraphSizeF(handle_, &sizeX, &sizeY);			//画像サイズを取得
+	GetGraphSizeF(handle_, &sizeX, &sizeY);				//画像サイズを取得
 
 	//各頂点に対して設定
 	for (int index = 0; auto & vertex : vertices)
