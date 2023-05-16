@@ -3,6 +3,16 @@
 #include "Shader.h"
 #include "ConstantBuffer.h"
 
+Shader::Shader(int handle):
+	handle_(handle)
+{
+}
+
+Shader::~Shader()
+{
+	DeleteShader(handle_);
+}
+
 void Shader::SetConstantBuffer(ConstantBufferBaseWeakPtr ptr, int slot)
 {
 	constantBufferInfos_[slot] = std::move(ptr);		//スロット番号をキーとしてハッシュマップに保持

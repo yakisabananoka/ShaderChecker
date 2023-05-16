@@ -3,14 +3,14 @@
 #include "Shader.h"
 
 /// @brief ピクセルシェーダー
-class PixelShader :
+class PixelShader final :
 	public Shader
 {
 public:
 	/// @brief コンストラクタ
 	/// @param path ファイルパス
 	PixelShader(std::filesystem::path path);
-	~PixelShader() override;
+	~PixelShader() override = default;
 
 	/// @brief 開始処理
 	void Begin(void) const;
@@ -23,8 +23,5 @@ public:
 
 	PixelShader(PixelShader&&) = default;
 	PixelShader& operator=(PixelShader&&) = default;
-
-private:
-	int handle_;		//ハンドル
 
 };

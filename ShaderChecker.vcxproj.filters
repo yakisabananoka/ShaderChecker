@@ -21,19 +21,31 @@
     <ClCompile Include="Source\System\Application.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Image.cpp">
+    <ClCompile Include="Source\Graphics\Drawable\Image.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\PixelShader.cpp">
+    <ClCompile Include="Source\Graphics\Shader\PixelShader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Shader.cpp">
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\VertexShader.cpp">
+    <ClCompile Include="Source\Graphics\Shader\VertexShader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\StopWatch.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\Model.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Camera\Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Drawable\Screen.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Camera\PerspectiveCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,35 +53,55 @@
     <ClInclude Include="Source\System\Application.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Image.h">
+    <ClInclude Include="Source\Graphics\Drawable\Image.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\PixelShader.h">
+    <ClInclude Include="Source\Graphics\Shader\PixelShader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\ConstantBuffer.h">
+    <ClInclude Include="Source\Graphics\Shader\ConstantBuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Details\ConstantBuffer.h">
+    <ClInclude Include="Source\Graphics\Shader\Details\ConstantBuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\UsingGraphics.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Shader.h">
+    <ClInclude Include="Source\Graphics\Shader\Shader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\VertexShader.h">
+    <ClInclude Include="Source\Graphics\Shader\VertexShader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\StopWatch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Model.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Camera\Camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Drawable\Screen.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Camera\PerspectiveCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Source\Shader\Pixel\TestOrigin.hlsl" />
+    <FxCompile Include="Source\Shader\Pixel\ImagePixelShader.hlsl" />
+    <FxCompile Include="Source\Shader\Vertex\ModelVertexShader.hlsl" />
+    <FxCompile Include="Source\Shader\Pixel\ModelPixelShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shader\Pixel\PixelShaderHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelShader3DHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexShader3DHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelShader2DHeader.hlsli" />
+    <None Include="Source\Shader\Common\VertexToPixelHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexInputType.hlsli" />
+    <None Include="Source\Shader\Common\CommonShader3DHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexInput.hlsli" />
   </ItemGroup>
 </Project>

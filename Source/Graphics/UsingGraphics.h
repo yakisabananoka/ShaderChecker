@@ -2,12 +2,8 @@
 #include <memory>
 
 class ConstantBufferBase;
+class VertexShader;
 class PixelShader;
+class Camera;
 
-template<class T>
-class ConstantBuffer;
-
-template<class T>
-using ConstantBufferPtr = std::shared_ptr<ConstantBuffer<T>>;
 using ConstantBufferBaseWeakPtr = std::weak_ptr<ConstantBufferBase>;		//ConstantBufferBaseの弱参照
-

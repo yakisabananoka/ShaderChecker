@@ -1,13 +1,13 @@
 ﻿#include <array>
 #include <DxLib.h>
 #include "Image.h"
-#include "PixelShader.h"
+#include "Graphics/Shader/PixelShader.h"
 
 static std::array<VERTEX2DSHADER, 4> vertices = {};			//シェーダー描画用
 
-Image::Image(const std::filesystem::path& path)
+Image::Image(std::filesystem::path path) :
+	Image(LoadGraph(path.string().c_str()))
 {
-	handle_ = LoadGraph(path.string().c_str());		//画像の読み込み
 }
 
 Image::~Image()
@@ -46,7 +46,7 @@ void Image::Draw(float x, float y, const PixelShader& pixelShader) const
 		index++;					//インデックスを加算
 	}
 
-	SetUseTextureToShader(0, handle_);			//0番スロットにテクスチャを設定
+	SetUseTextureToShader(0, handle_);					//0番スロットにテクスチャを設定
 
 	pixelShader.Begin();								//シェーダーの開始処理
 
@@ -55,4 +55,23 @@ void Image::Draw(float x, float y, const PixelShader& pixelShader) const
 	pixelShader.End();									//シェーダーの終了処理
 
 	SetUseTextureToShader(0, -1);	//テクスチャの設定を解除
+}
+
+void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg)
+{
+	DrawBillboard3D(pos, cx, cy, size, angle, handle_, transFlg);
+}
+
+void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg, const PixelShader& pixel)
+{
+	pixel.Begin();
+
+	DrawBillboard3DToShader(pos, cx, cy, size, angle, handle_, transFlg);
+
+	pixel.End();
+}
+
+Image::Image(int handle) :
+	handle_(handle)
+{
 }

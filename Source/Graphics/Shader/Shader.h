@@ -1,13 +1,15 @@
 ﻿#pragma once
 #include <unordered_map>
-#include "UsingGraphics.h"
+#include "Graphics/UsingGraphics.h"
 
 /// @brief シェーダー
 class Shader
 {
 public:
-	Shader() = default;
-	virtual ~Shader() = default;
+	/// @brief コンストラクタ
+	/// @param handle ハンドル
+	Shader(int handle);
+	virtual ~Shader();
 
 	/// @brief 定数バッファの設定
 	/// @param ptr 定数バッファの基底の弱参照
@@ -30,4 +32,5 @@ protected:
 	void EndConstantBuffer(int shaderType) const;
 
 	std::unordered_map<int, ConstantBufferBaseWeakPtr> constantBufferInfos_;		//定数バッファの弱参照を保持するハッシュマップ
+	int handle_;		//ハンドル
 };

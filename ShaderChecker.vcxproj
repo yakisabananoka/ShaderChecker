@@ -71,20 +71,24 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(DXLIB_DIR);$(IncludePath)</IncludePath>
+    <IncludePath>$(DXLIB_DIR);$(ProjectDir)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXLIB_DIR);$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(DXLIB_DIR);$(IncludePath)</IncludePath>
+    <IncludePath>$(DXLIB_DIR);$(ProjectDir)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXLIB_DIR);$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(DXLIB_DIR);$(IncludePath)</IncludePath>
+    <IncludePath>$(DXLIB_DIR);$(ProjectDir)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXLIB_DIR);$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(DXLIB_DIR);$(IncludePath)</IncludePath>
+    <IncludePath>$(DXLIB_DIR);$(ProjectDir)Source;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXLIB_DIR);$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,11 +99,17 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ShaderType>Pixel</ShaderType>
+      <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,6 +122,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,6 +130,11 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ShaderType>Pixel</ShaderType>
+      <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -129,11 +145,17 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ShaderType>Pixel</ShaderType>
+      <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,6 +168,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,45 +176,74 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ShaderType>Pixel</ShaderType>
+      <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\StopWatch.cpp" />
-    <ClCompile Include="Source\Graphics\Image.cpp" />
-    <ClCompile Include="Source\Graphics\PixelShader.cpp" />
-    <ClCompile Include="Source\Graphics\Shader.cpp" />
-    <ClCompile Include="Source\Graphics\VertexShader.cpp" />
+    <ClCompile Include="Source\Graphics\Camera\Camera.cpp" />
+    <ClCompile Include="Source\Graphics\Camera\PerspectiveCamera.cpp" />
+    <ClCompile Include="Source\Graphics\Drawable\Image.cpp" />
+    <ClCompile Include="Source\Graphics\Drawable\Model.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\PixelShader.cpp" />
+    <ClCompile Include="Source\Graphics\Drawable\Screen.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\VertexShader.cpp" />
     <ClCompile Include="Source\System\Application.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Common\StopWatch.h" />
-    <ClInclude Include="Source\Graphics\ConstantBuffer.h" />
-    <ClInclude Include="Source\Graphics\Details\ConstantBuffer.h" />
-    <ClInclude Include="Source\Graphics\Image.h" />
-    <ClInclude Include="Source\Graphics\PixelShader.h" />
-    <ClInclude Include="Source\Graphics\Shader.h" />
+    <ClInclude Include="Source\Graphics\Camera\Camera.h" />
+    <ClInclude Include="Source\Graphics\Camera\PerspectiveCamera.h" />
+    <ClInclude Include="Source\Graphics\Shader\ConstantBuffer.h" />
+    <ClInclude Include="Source\Graphics\Shader\Details\ConstantBuffer.h" />
+    <ClInclude Include="Source\Graphics\Drawable\Image.h" />
+    <ClInclude Include="Source\Graphics\Drawable\Model.h" />
+    <ClInclude Include="Source\Graphics\Shader\PixelShader.h" />
+    <ClInclude Include="Source\Graphics\Drawable\Screen.h" />
+    <ClInclude Include="Source\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Graphics\UsingGraphics.h" />
-    <ClInclude Include="Source\Graphics\VertexShader.h" />
+    <ClInclude Include="Source\Graphics\Shader\VertexShader.h" />
     <ClInclude Include="Source\System\Application.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Source\Shader\Pixel\TestOrigin.hlsl">
+    <FxCompile Include="Source\Shader\Pixel\ImagePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
+    <FxCompile Include="Source\Shader\Pixel\ModelPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Source\Shader\Vertex\ModelVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+    </FxCompile>
+    <None Include="Source\Shader\Vertex\VertexInput.hlsli">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shader\Pixel\PixelShaderHeader.hlsli" />
+    <None Include="Source\Shader\Common\CommonShader3DHeader.hlsli" />
+    <None Include="Source\Shader\Common\VertexToPixelHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelShader2DHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelShader3DHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexInputType.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexShader3DHeader.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
