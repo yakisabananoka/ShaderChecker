@@ -71,6 +71,19 @@ void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool t
 	pixel.End();
 }
 
+Image::Image(Image&& image) noexcept:
+	handle_(image.handle_)
+{
+	image.handle_ = -1;
+}
+
+Image& Image::operator=(Image&& image) noexcept
+{
+	handle_ = image.handle_;
+	image.handle_ = -1;
+	return *this;
+}
+
 Image::Image(int handle) :
 	handle_(handle)
 {

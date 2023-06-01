@@ -42,13 +42,13 @@ public:
 	T& GetValue(void);
 
 	/// @brief 更新(値を変更した後は必ず行う)
-	void Update(void);
+	void Update(void) const;
 
 	ConstantBuffer(const ConstantBuffer&) = delete;
 	ConstantBuffer& operator=(const ConstantBuffer&) = delete;
 
-	ConstantBuffer(ConstantBuffer&&) = default;
-	ConstantBuffer& operator=(ConstantBuffer&&) = default;
+	ConstantBuffer(ConstantBuffer&& constantBuffer) noexcept;
+	ConstantBuffer& operator=(ConstantBuffer&& constantBuffer) noexcept;
 
 private:
 	int handle_;		//ハンドル

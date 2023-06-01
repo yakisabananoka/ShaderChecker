@@ -40,11 +40,11 @@ public:
 	/// @param pixel ピクセルシェーダー
 	void Draw(const VertexShader& vertex, const PixelShader& pixel) const;
 
-	Model(const Model&) = delete;
-	Model& operator=(const Model&) = delete;
+	Model(const Model& model);
+	Model& operator=(const Model& model);
 
-	Model(Model&&) = default;
-	Model& operator=(Model&&) = default;
+	Model(Model&& model);
+	Model& operator=(Model&& model);
 
 private:
 	int handle_;		//ハンドル

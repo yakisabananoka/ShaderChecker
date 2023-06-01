@@ -24,8 +24,8 @@ public:
 	/// @param target ターゲットの位置
 	void SetTarget(const VECTOR& target);
 
-	Camera(const Camera&) = delete;
-	Camera& operator=(const Camera&) = delete;
+	Camera(const Camera&) = default;
+	Camera& operator=(const Camera&) = default;
 
 	Camera(Camera&&) = default;
 	Camera& operator=(Camera&&) = default;

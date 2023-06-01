@@ -16,8 +16,8 @@ public:
 	/// @param fov 視野角(ラジアン)
 	void SetFov(float fov);
 
-	PerspectiveCamera(const PerspectiveCamera&) = delete;
-	PerspectiveCamera& operator=(const PerspectiveCamera&) = delete;
+	PerspectiveCamera(const PerspectiveCamera&) = default;
+	PerspectiveCamera& operator=(const PerspectiveCamera&) = default;
 
 	PerspectiveCamera(PerspectiveCamera&&) = default;
 	PerspectiveCamera& operator=(PerspectiveCamera&&) = default;

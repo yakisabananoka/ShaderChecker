@@ -10,6 +10,7 @@ public:
 	/// @brief コンストラクタ
 	/// @param path ファイルパス
 	Image(std::filesystem::path path);
+
 	virtual ~Image();
 
 	/// @brief 通常の描画
@@ -46,9 +47,8 @@ public:
 	Image(const Image&) = delete;
 	Image& operator=(const Image&) = delete;
 
-	Image(Image&&) = default;
-	Image& operator=(Image&&) = default;
-
+	Image(Image&& image) noexcept;
+	Image& operator=(Image&& image) noexcept;
 protected:
 	/// @brief コンストラクタ
 	/// @param handle ハンドル

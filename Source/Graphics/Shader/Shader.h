@@ -19,8 +19,8 @@ public:
 	Shader(const Shader&) = delete;
 	Shader& operator=(const Shader&) = delete;
 
-	Shader(Shader&&) = default;
-	Shader& operator=(Shader&&) = default;
+	Shader(Shader&& shader) noexcept;
+	Shader& operator=(Shader&& shader) noexcept;
 
 protected:
 	/// @brief 定数バッファの開始処理

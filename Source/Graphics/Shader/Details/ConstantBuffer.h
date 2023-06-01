@@ -32,8 +32,25 @@ T& ConstantBuffer<T>::GetValue(void)
 
 template <class T>
 	requires (sizeof(T) % 16 == 0)
-void ConstantBuffer<T>::Update(void)
+void ConstantBuffer<T>::Update(void) const
 {
 	UpdateShaderConstantBuffer(handle_);		//更新
+}
+
+template <class T>
+	requires (sizeof(T) % 16 == 0)
+ConstantBuffer<T>::ConstantBuffer(ConstantBuffer&& constantBuffer) noexcept :
+	handle_(constantBuffer.handle_)
+{
+	constantBuffer.handle_ = -1;
+}
+
+template <class T>
+	requires (sizeof(T) % 16 == 0)
+ConstantBuffer<T>& ConstantBuffer<T>::operator=(ConstantBuffer&& constantBuffer) noexcept
+{
+	handle_ = constantBuffer.handle_;
+	constantBuffer.handle_ = -1;
+	return *this;
 }
 

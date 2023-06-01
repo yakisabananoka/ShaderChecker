@@ -51,3 +51,27 @@ void Model::Draw(const VertexShader& vertex, const PixelShader& pixel) const
 
 	MV1SetUseOrigShader(false);
 }
+
+Model::Model(const Model& model):
+	handle_(MV1DuplicateModel(model.handle_))
+{
+}
+
+Model& Model::operator=(const Model& model)
+{
+	handle_ = MV1DuplicateModel(model.handle_);
+	return *this;
+}
+
+Model::Model(Model&& model) :
+	handle_(model.handle_)
+{
+	model.handle_ = -1;
+}
+
+Model& Model::operator=(Model&& model)
+{
+	handle_ = model.handle_;
+	model.handle_ = -1;
+	return *this;
+}

@@ -27,8 +27,8 @@ bool Application::Run(void)
 bool Application::Initialize(void)
 {
 	SetOutApplicationLogValidFlag(false);		//ログファイルの出力無効化
-	ChangeWindowMode(true);					//ウィンドウモードに変更
-	SetUseDirect3D11(true);					//DirectX11を使用
+	ChangeWindowMode(true);						//ウィンドウモードに変更
+	SetUseDirect3D11(true);						//DirectX11を使用
 
 	if(DxLib_Init() == -1)
 	{
@@ -81,12 +81,12 @@ void Application::Update(void)
 
 		//ここから描画処理
 
-		screen.Setup();									//スクリーンをセット
-		camera.Setup();									//カメラのセット
-		screen.Clear();									//スクリーンを初期化
+		screen.Setup();				//スクリーンをセット
+		camera.Setup();				//カメラのセット
+		screen.Clear();				//スクリーンを初期化
 
 		//image.Draw(0.0f, 0.0f, imagePixelShader);						//ピクセルシェーダーを使用して(0,0)の位置に画像を描画
-		model.Draw(modelVertexShader, modelPixelShader);					//シェーダーを利用したモデルの描画
+		model.Draw(modelVertexShader, modelPixelShader);				//シェーダーを利用したモデルの描画
 
 
 		backScreen.Setup();
@@ -94,6 +94,6 @@ void Application::Update(void)
 
 		screen.Draw(0.0f, 0.0f, true);
 
-		Screen::Flip();									//実際の画面に反映
+		Screen::Flip();			//実際の画面に反映
 	}
 }

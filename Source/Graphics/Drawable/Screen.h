@@ -8,18 +8,18 @@ public:
 	Screen(int x, int y, bool transFlg);
 	~Screen() override = default;
 
-	static Screen& GetBackScreen(void);
+	static const Screen& GetBackScreen(void);
 	static void Flip(void);
 
 	void Setup(void) const;
 
-	void Clear(void);
+	void Clear(void) const;
 
 	Screen(const Screen&) = delete;
 	Screen& operator=(const Screen&) = delete;
 
-	Screen(Screen&&) = default;
-	Screen& operator=(Screen&&) = default;
+	Screen(Screen&& screen) noexcept;
+	Screen& operator=(Screen&& screen) noexcept;
 
 protected:
 	Screen(int handle);
