@@ -85,8 +85,8 @@ void Application::Update(void)
 		camera.Setup();				//カメラのセット
 		screen.Clear();				//スクリーンを初期化
 
-		//image.Draw(0.0f, 0.0f, imagePixelShader);						//ピクセルシェーダーを使用して(0,0)の位置に画像を描画
-		model.Draw(modelVertexShader, modelPixelShader);				//シェーダーを利用したモデルの描画
+		image.Draw(0.0f, 0.0f, imagePixelShader);						//ピクセルシェーダーを使用して(0,0)の位置に画像を描画
+		//model.Draw(modelVertexShader, modelPixelShader);				//シェーダーを利用したモデルの描画
 
 
 		backScreen.Setup();

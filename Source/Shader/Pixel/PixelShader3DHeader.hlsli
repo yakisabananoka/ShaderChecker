@@ -66,24 +66,24 @@ cbuffer cbD3D11_CONST_BUFFER_PS_SHADOWMAP : register(b2)
 SamplerState diffuseMapSampler            : register(s0);           // ディフューズマップテクスチャ
 Texture2D diffuseMapTexture               : register(t0);           // ディフューズマップテクスチャ
 
-#if BUMPMAP
+#if defined(BUMPMAP)
 SamplerState normalMapSampler             : register(s1);    		// 法線マップテクスチャ
 Texture2D    normalMapTexture             : register(t1);	    	// 法線マップテクスチャ
 #endif // BUMPMAP
 
-#if USE_SPETEX
+#if defined(USE_SPETEX)
 SamplerState specularMapSampler           : register(s2);    		// スペキュラマップテクスチャ
 Texture2D    specularMapTexture           : register(t2);	    	// スペキュラマップテクスチャ
 #endif // USE_SPETEX
 
-#if TOON
+#if defined(TOON)
 SamplerState toonDiffuseGradSampler       : register(s3);   		// トゥーンレンダリング用ディフューズカラーグラデーションテクスチャ
 Texture2D    toonDiffuseGradTexture       : register(t3); 	    	// トゥーンレンダリング用ディフューズカラーグラデーションテクスチャ
 
 SamplerState toonSpecularGradSampler      : register(s4);	    	// トゥーンレンダリング用スペキュラカラーグラデーションテクスチャ
 Texture2D    toonSpecularGradTexture      : register(t4);   		// トゥーンレンダリング用スペキュラカラーグラデーションテクスチャ
 
-#if TOON_SPHEREOP_MUL || TOON_SPHEREOP_ADD
+#if defined(TOON_SPHEREOP_MUL) || defined(TOON_SPHEREOP_ADD)
 SamplerState toonSphereMapSampler         : register(s5);     		// トゥーンレンダリング用スフィアマップテクスチャ
 Texture2D    toonSphereMapTexture         : register(t5);	    	// トゥーンレンダリング用スフィアマップテクスチャ
 #endif // TOON_SPHEREOP_MUL || TOON_SPHEREOP_ADD
@@ -92,12 +92,12 @@ SamplerState toonRGBtoVMaxRGBVolumeSampler: register(s6);	    	// トゥーンレンダ
 Texture3D    toonRGBtoVMaxRGBVolumeTexture: register(t6);		    // トゥーンレンダリング用RGB輝度飽和処理用ボリュームテクスチャ
 #endif // TOON
 
-#if SUBTEXTUREMODE
+#if defined(SUBTEXTUREMODE)
 SamplerState subSampler                   : register(s7);           // サブテクスチャ
 Texture2D subTexture                      : register(t7);           // サブテクスチャ
 #endif // SUBTEXTUREMODE != 0
 
-#if SHADOWMAP
+#if defined(SHADOWMAP)
 SamplerState shadowMap0Sampler            : register(s8);	    	// シャドウマップ０テクスチャ
 Texture2D    shadowMap0Texture            : register(t8);		    // シャドウマップ０テクスチャ
 
