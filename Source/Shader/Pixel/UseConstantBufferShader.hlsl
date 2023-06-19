@@ -2,7 +2,8 @@
 
 cbuffer Test : register(b3)
 {
-    float time; //経過時間
+    float time;         //経過時間
+    float padding[3];   //パディング
 }
 
 //エントリーポイント
