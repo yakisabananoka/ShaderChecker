@@ -4,9 +4,9 @@
 
 template <class T>
 	requires (sizeof(T) % 16 == 0)
-ConstantBuffer<T>::ConstantBuffer()
+ConstantBufferPtr<T> ConstantBuffer<T>::Create(void)
 {
-	handle_ = CreateShaderConstantBuffer(sizeof(T));		//定数バッファの生成
+	return ConstantBufferPtr<T>(new ConstantBuffer);
 }
 
 template <class T>
@@ -54,3 +54,9 @@ ConstantBuffer<T>& ConstantBuffer<T>::operator=(ConstantBuffer&& constantBuffer)
 	return *this;
 }
 
+template <class T>
+	requires (sizeof(T) % 16 == 0)
+ConstantBuffer<T>::ConstantBuffer()
+{
+	handle_ = CreateShaderConstantBuffer(sizeof(T));		//定数バッファの生成
+}

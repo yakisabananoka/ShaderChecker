@@ -9,7 +9,7 @@ class Model
 public:
 	/// @brief コンストラクタ
 	/// @param path ファイルパス
-	Model(std::filesystem::path path);
+	Model(const std::filesystem::path& path);
 	~Model();
 
 	/// @brief 位置の設定
@@ -43,8 +43,8 @@ public:
 	Model(const Model& model);
 	Model& operator=(const Model& model);
 
-	Model(Model&& model);
-	Model& operator=(Model&& model);
+	Model(Model&& model) noexcept;
+	Model& operator=(Model&& model) noexcept;
 
 private:
 	int handle_;		//ハンドル

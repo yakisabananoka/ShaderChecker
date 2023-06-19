@@ -1,7 +1,7 @@
 #if !defined(VERTEX_INPUT)
 
 #include "VertexInputType.hlsli"
-#define VERTEX_INPUT DX_MV1_VERTEX_TYPE_1FRAME
+#define VERTEX_INPUT (DX_MV1_VERTEX_TYPE_1FRAME)
 
 #endif
 

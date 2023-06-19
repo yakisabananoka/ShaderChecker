@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
@@ -142,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
@@ -165,7 +165,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
@@ -192,6 +192,11 @@
     <ClCompile Include="Source\Graphics\Drawable\Screen.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Shader\VertexShader.cpp" />
+    <ClCompile Include="Source\Scene\Deriverd\2D\ConstantBufferScene.cpp" />
+    <ClCompile Include="Source\Scene\Deriverd\2D\ImageScene.cpp" />
+    <ClCompile Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.cpp" />
+    <ClCompile Include="Source\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Scene\SceneManager.cpp" />
     <ClCompile Include="Source\System\Application.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
@@ -208,6 +213,12 @@
     <ClInclude Include="Source\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Graphics\UsingGraphics.h" />
     <ClInclude Include="Source\Graphics\Shader\VertexShader.h" />
+    <ClInclude Include="Source\Scene\Deriverd\2D\ConstantBufferScene.h" />
+    <ClInclude Include="Source\Scene\Deriverd\2D\ImageScene.h" />
+    <ClInclude Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.h" />
+    <ClInclude Include="Source\Scene\Scene.h" />
+    <ClInclude Include="Source\Scene\SceneManager.h" />
+    <ClInclude Include="Source\Scene\UsingScene.h" />
     <ClInclude Include="Source\System\Application.h" />
   </ItemGroup>
   <ItemGroup>
@@ -217,7 +228,25 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
+    <FxCompile Include="Source\Shader\Pixel\Kuwahara2DShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
     <FxCompile Include="Source\Shader\Pixel\ModelPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Source\Shader\Pixel\MultiRT2DPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Source\Shader\Pixel\UseConstantBufferShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -233,6 +262,9 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
     </FxCompile>
+    <None Include="Source\Shader\Common\CommonFunctionHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelFunctionHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexFunctionHeader.hlsli" />
     <None Include="Source\Shader\Vertex\VertexInput.hlsli">
       <FileType>Document</FileType>
     </None>

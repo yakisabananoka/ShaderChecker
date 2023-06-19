@@ -48,6 +48,21 @@
     <ClCompile Include="Source\Graphics\Camera\PerspectiveCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scene\Scene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Deriverd\2D\ImageScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Deriverd\2D\ConstantBufferScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\System\Application.h">
@@ -89,11 +104,32 @@
     <ClInclude Include="Source\Graphics\Camera\PerspectiveCamera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Scene\UsingScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Scene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\SceneManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Deriverd\2D\ImageScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Deriverd\2D\ConstantBufferScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Shader\Pixel\ImagePixelShader.hlsl" />
     <FxCompile Include="Source\Shader\Vertex\ModelVertexShader.hlsl" />
     <FxCompile Include="Source\Shader\Pixel\ModelPixelShader.hlsl" />
+    <FxCompile Include="Source\Shader\Pixel\MultiRT2DPixelShader.hlsl" />
+    <FxCompile Include="Source\Shader\Pixel\Kuwahara2DShader.hlsl" />
+    <FxCompile Include="Source\Shader\Pixel\UseConstantBufferShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Shader\Pixel\PixelShader3DHeader.hlsli" />
@@ -103,5 +139,8 @@
     <None Include="Source\Shader\Vertex\VertexInputType.hlsli" />
     <None Include="Source\Shader\Common\CommonShader3DHeader.hlsli" />
     <None Include="Source\Shader\Vertex\VertexInput.hlsli" />
+    <None Include="Source\Shader\Common\CommonFunctionHeader.hlsli" />
+    <None Include="Source\Shader\Pixel\PixelFunctionHeader.hlsli" />
+    <None Include="Source\Shader\Vertex\VertexFunctionHeader.hlsli" />
   </ItemGroup>
 </Project>

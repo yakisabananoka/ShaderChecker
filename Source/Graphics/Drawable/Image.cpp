@@ -3,11 +3,9 @@
 #include "Image.h"
 #include "Graphics/Shader/PixelShader.h"
 
-static std::array<VERTEX2DSHADER, 4> vertices = {};			//シェーダー描画用
-
-Image::Image(std::filesystem::path path) :
-	Image(LoadGraph(path.string().c_str()))
+ImagePtr Image::Create(const std::filesystem::path& path)
 {
+	return ImagePtrTemplate<Image>(new Image(path));
 }
 
 Image::~Image()
@@ -22,11 +20,13 @@ void Image::Draw(float x, float y, bool transFlg) const
 
 void Image::Draw(float x, float y, const PixelShader& pixelShader) const
 {
+	std::array<VERTEX2DSHADER, 4> vertices = {};		//シェーダー描画用
+
 	float sizeX, sizeY = {};
 	GetGraphSizeF(handle_, &sizeX, &sizeY);				//画像サイズを取得
 
 	//各頂点に対して設定
-	for (int index = 0; auto & vertex : vertices)
+	for (int index = 0; auto& vertex : vertices)
 	{
 		vertex.u = static_cast<float>(index % 2);		//奇数の場合は0、偶数の場合は1を設定
 		vertex.v = static_cast<float>(index >= 2);		//2未満の場合は0、それ以外は1を設定
@@ -54,15 +54,15 @@ void Image::Draw(float x, float y, const PixelShader& pixelShader) const
 
 	pixelShader.End();									//シェーダーの終了処理
 
-	SetUseTextureToShader(0, -1);	//テクスチャの設定を解除
+	SetUseTextureToShader(0, -1);						//テクスチャの設定を解除
 }
 
-void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg)
+void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg) const
 {
 	DrawBillboard3D(pos, cx, cy, size, angle, handle_, transFlg);
 }
 
-void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg, const PixelShader& pixel)
+void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg, const PixelShader& pixel) const
 {
 	pixel.Begin();
 
@@ -71,20 +71,12 @@ void Image::Draw(VECTOR pos, float cx, float cy, float size, float angle, bool t
 	pixel.End();
 }
 
-Image::Image(Image&& image) noexcept:
-	handle_(image.handle_)
-{
-	image.handle_ = -1;
-}
-
-Image& Image::operator=(Image&& image) noexcept
-{
-	handle_ = image.handle_;
-	image.handle_ = -1;
-	return *this;
-}
-
 Image::Image(int handle) :
 	handle_(handle)
+{
+}
+
+Image::Image(const std::filesystem::path& path) :
+	Image(LoadGraph(path.string().c_str()))
 {
 }

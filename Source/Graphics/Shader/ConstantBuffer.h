@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Graphics/UsingGraphics.h"
 
 /// @brief 定数バッファの基底クラス
 class ConstantBufferBase
@@ -24,11 +25,12 @@ public:
 /// @tparam T 転送したい値の型(型のサイズを16の倍数にする必要アリ)
 template<class T>
 	requires (sizeof(T)%16 == 0)
-class ConstantBuffer :
+class ConstantBuffer final :
 	public ConstantBufferBase
 {
 public:
-	ConstantBuffer();
+	static ConstantBufferPtr<T> Create(void);
+
 	~ConstantBuffer() override;
 
 	/// @brief ハンドルの取得
@@ -51,6 +53,8 @@ public:
 	ConstantBuffer& operator=(ConstantBuffer&& constantBuffer) noexcept;
 
 private:
+	ConstantBuffer();
+
 	int handle_;		//ハンドル
 };
 

@@ -87,6 +87,20 @@ struct VertexInput
     int4 blendIndices1 : BLENDINDICES1; // ボーン処理用 Float型定数配列インデックス1
     float4 blendWeight1 : BLENDWEIGHT1; // ボーン処理用ウエイト値1
 };
+#elif (VERTEX_INPUT == DX_VERTEX_TYPE_ORIGIN)
+//DrawPolygon3D等の関数を使用した場合に送られる頂点
+struct VertexInput
+{
+	float3 pos : POSITION0;     //座標(ローカル空間)
+    float4 subPos : POSITION1;  //補助座標
+    float3 norm : NORMAL;       //法線
+    float3 tan : TANGENT;       //接線
+    float3 bin : BINORMAL;      //従法線
+    float4 diffuse : COLOR0;    //ディフューズカラー
+    float4 specular : COLOR1;   //スペキュラカラー
+    float2 uv0 : TEXCOORD0;     //テクスチャ座標0
+    float2 uv1 : TEXCOORD1;     //テクスチャ座標1
+};
 #endif
 
 #endif

@@ -1,4 +1,5 @@
-﻿#include <DxLib.h>
+﻿#include <array>
+#include <DxLib.h>
 #include "Screen.h"
 
 class BackScreen final:
@@ -16,9 +17,17 @@ public:
 	}
 };
 
-Screen::Screen(int x, int y, bool transFlg) :
-	Image(MakeScreen(x, y, transFlg))
+ScreenPtr Screen::Create(void)
 {
+	int x = 0;
+	int y = 0;
+	GetBackScreen().GetScreenSize(x, y);
+	return Create(x, y, true);
+}
+
+ScreenPtr Screen::Create(int x, int y, bool transFlg)
+{
+	return ImagePtrTemplate<Screen>(new Screen(x, y, transFlg));
 }
 
 const Screen& Screen::GetBackScreen(void)
@@ -32,9 +41,19 @@ void Screen::Flip(void)
 	ScreenFlip();
 }
 
+void Screen::GetScreenSize(int& x, int& y) const
+{
+	GetGraphSize(handle_, &x, &y);
+}
+
 void Screen::Setup(void) const
 {
 	SetDrawScreen(handle_);
+}
+
+void Screen::Setup(int index, bool releaseFlg) const
+{
+	SetRenderTargetToShader(index, releaseFlg ? -1 : handle_);
 }
 
 void Screen::Clear(void) const
@@ -46,20 +65,12 @@ void Screen::Clear(void) const
 	ClsDrawScreen();
 }
 
-Screen::Screen(Screen&& screen) noexcept:
-	Image(screen.handle_)
-{
-	screen.handle_ = -1;
-}
-
-Screen& Screen::operator=(Screen&& screen) noexcept
-{
-	handle_ = screen.handle_;
-	screen.handle_ = -1;
-	return *this;
-}
-
 Screen::Screen(int handle) :
 	Image(handle)
+{
+}
+
+Screen::Screen(int x, int y, bool transFlg) :
+	Image(MakeScreen(x, y, transFlg))
 {
 }

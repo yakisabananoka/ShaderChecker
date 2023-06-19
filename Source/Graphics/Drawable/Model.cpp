@@ -2,9 +2,9 @@
 #include "Graphics/Shader/VertexShader.h"
 #include "Graphics/Shader/PixelShader.h"
 
-Model::Model(std::filesystem::path path)
+Model::Model(const std::filesystem::path& path):
+	handle_(MV1LoadModel(path.string().c_str()))
 {
-	handle_ = MV1LoadModel(path.string().c_str());
 }
 
 Model::~Model()
@@ -63,13 +63,13 @@ Model& Model::operator=(const Model& model)
 	return *this;
 }
 
-Model::Model(Model&& model) :
+Model::Model(Model&& model) noexcept:
 	handle_(model.handle_)
 {
 	model.handle_ = -1;
 }
 
-Model& Model::operator=(Model&& model)
+Model& Model::operator=(Model&& model) noexcept
 {
 	handle_ = model.handle_;
 	model.handle_ = -1;

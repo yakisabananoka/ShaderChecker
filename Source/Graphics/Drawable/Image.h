@@ -7,9 +7,10 @@
 class Image
 {
 public:
-	/// @brief コンストラクタ
+	/// @brief Imageの生成関数(出力型を限定するため)
 	/// @param path ファイルパス
-	Image(std::filesystem::path path);
+	/// @return Imageのshared_ptr
+	static ImagePtr Create(const std::filesystem::path& path);
 
 	virtual ~Image();
 
@@ -32,7 +33,7 @@ public:
 	/// @param size サイズ
 	/// @param angle 回転角度(ラジアン)
 	/// @param transFlg 透過するか
-	void Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg);
+	void Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg) const;
 
 	/// @brief シェーダーを使用したビルボードとしての描画
 	/// @param pos 位置
@@ -42,18 +43,23 @@ public:
 	/// @param angle 回転角度(ラジアン)
 	/// @param transFlg 透過するか
 	/// @param pixel ピクセルシェーダー
-	void Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg, const PixelShader& pixel);
+	void Draw(VECTOR pos, float cx, float cy, float size, float angle, bool transFlg, const PixelShader& pixel) const;
 
 	Image(const Image&) = delete;
 	Image& operator=(const Image&) = delete;
 
-	Image(Image&& image) noexcept;
-	Image& operator=(Image&& image) noexcept;
+	Image(Image&& image) = delete;
+	Image& operator=(Image&& image) = delete;
 protected:
 	/// @brief コンストラクタ
 	/// @param handle ハンドル
 	Image(int handle);
 
 	int handle_;		//ハンドル
+
+private:
+	/// @brief コンストラクタ
+	/// @param path ファイルパス
+	Image(const std::filesystem::path& path);
 };
 
