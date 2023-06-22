@@ -14,11 +14,23 @@ public:
 
 	virtual ~Image();
 
+	/// @brief シェーダーに対して設定
+	/// @param slot スロット番号(0以降)
+	void SetupToShader(int slot) const;
+
 	/// @brief 通常の描画
 	/// @param x X座標
 	/// @param y Y座標
 	/// @param transFlg 透過するか
 	void Draw(float x, float y, bool transFlg) const;
+
+	/// @brief 拡大縮小を伴う描画
+	/// @param x1 左上のX座標
+	/// @param y1 左上のY座標
+	/// @param x2 右下のX座標
+	/// @param y2 右下のY座標
+	/// @param transFlg 透過するか
+	void Draw(float x1, float y1, float x2, float y2, bool transFlg) const;
 
 	/// @brief シェーダーを使用した描画
 	/// @param x X座標

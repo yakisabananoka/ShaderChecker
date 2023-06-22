@@ -2,6 +2,7 @@
 #include "Graphics/Drawable/Image.h"
 #include "Graphics/Drawable/Screen.h"
 #include "Graphics/Shader/ConstantBuffer.h"
+#include "Graphics/Shader/PixelShader.h"
 
 ScenePtrTemplate<ConstantBufferScene> ConstantBufferScene::Create(void)
 {
@@ -20,16 +21,16 @@ void ConstantBufferScene::Update(void)
 	screen_->Setup();		//スクリーンの設定
 	screen_->Clear();		//スクリーンを初期化
 
-	image_->Draw(0.0f, 0.0f, pixelShader_);			//ピクセルシェーダーを使用して画像を描画
+	image_->Draw(0.0f, 0.0f, *pixelShader_);		//ピクセルシェーダーを使用して画像を描画
 
 	//ここまで描画処理
 }
 
 ConstantBufferScene::ConstantBufferScene() :
 	image_(Image::Create("Assets/Image/texture0.png")),
-	pixelShader_("Assets/ShaderBinary/Pixel/UseConstantBufferShader.pso"),
+	pixelShader_(PixelShader::Create("Assets/ShaderBinary/Pixel/UseConstantBufferShader.pso")),
 	constantBuffer_(ConstantBuffer<Test>::Create())
 {
-	pixelShader_.SetConstantBuffer(constantBuffer_, 3);			//ピクセルシェーダーの3番スロットに定数バッファをセット
-	stopWatch_.Start();													//計測開始
+	pixelShader_->SetConstantBuffer(constantBuffer_, 3);			//ピクセルシェーダーの3番スロットに定数バッファをセット
+	stopWatch_.Start();												//計測開始
 }

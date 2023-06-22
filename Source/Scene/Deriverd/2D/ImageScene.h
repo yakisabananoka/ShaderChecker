@@ -1,9 +1,8 @@
 ﻿#pragma once
+#include <filesystem>
 #include "Scene/Scene.h"
 #include "Scene/UsingScene.h"
 #include "Graphics/UsingGraphics.h"
-#include "Graphics/Shader/PixelShader.h"
-#include "Common/StopWatch.h"
 
 class ImageScene final:
 	public Scene
@@ -27,6 +26,6 @@ public:
 private:
 	ImageScene(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath);
 
-	ImagePtr image_;									//画像
-	PixelShader pixelShader_;							//画像用のピクセルシェーダー
+	ImagePtr image_;					//画像
+	PixelShaderPtr pixelShader_;		//画像用のピクセルシェーダー
 };

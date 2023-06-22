@@ -2,7 +2,6 @@
 #include "Scene/Scene.h"
 #include "Scene/UsingScene.h"
 #include "Graphics/UsingGraphics.h"
-#include "Graphics/Shader/PixelShader.h"
 #include "Common/StopWatch.h"
 
 class ConstantBufferScene final :
@@ -35,7 +34,7 @@ private:
 	ConstantBufferScene();
 
 	ImagePtr image_;									//画像
-	PixelShader pixelShader_;							//画像用のピクセルシェーダー
+	PixelShaderPtr pixelShader_;						//画像用のピクセルシェーダー
 	ConstantBufferPtr<Test> constantBuffer_;			//定数バッファ
 
 	StopWatch stopWatch_;								//時間計測

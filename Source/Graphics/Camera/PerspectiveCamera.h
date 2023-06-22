@@ -1,12 +1,16 @@
 ﻿#pragma once
 #include "Camera.h"
+#include "Graphics/UsingGraphics.h"
 
-/// @brief 投資投影
+/// @brief 透視投影
 class PerspectiveCamera :
 	public Camera
 {
 public:
-	PerspectiveCamera();
+	/// @brief 生成関数
+	/// @return カメラ
+	static PerspectiveCameraPtr Create(void);
+
 	~PerspectiveCamera()override = default;
 
 	/// @brief カメラの使用を設定
@@ -21,6 +25,10 @@ public:
 
 	PerspectiveCamera(PerspectiveCamera&&) = default;
 	PerspectiveCamera& operator=(PerspectiveCamera&&) = default;
+
+protected:
+	PerspectiveCamera();
+
 private:
 	float fov_;
 

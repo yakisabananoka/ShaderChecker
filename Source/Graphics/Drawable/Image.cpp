@@ -5,7 +5,7 @@
 
 ImagePtr Image::Create(const std::filesystem::path& path)
 {
-	return ImagePtrTemplate<Image>(new Image(path));
+	return ImagePtr(new Image(path));
 }
 
 Image::~Image()
@@ -13,9 +13,19 @@ Image::~Image()
 	DeleteGraph(handle_);									//画像の削除
 }
 
+void Image::SetupToShader(int slot) const
+{
+	SetUseTextureToShader(slot, handle_);
+}
+
 void Image::Draw(float x, float y, bool transFlg) const
 {
 	DrawGraph(static_cast<int>(x), static_cast<int>(y), handle_, transFlg);			//描画
+}
+
+void Image::Draw(float x1, float y1, float x2, float y2, bool transFlg) const
+{
+	DrawExtendGraphF(x1, y1, x2, y2, handle_, transFlg);
 }
 
 void Image::Draw(float x, float y, const PixelShader& pixelShader) const

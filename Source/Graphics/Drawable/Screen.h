@@ -32,13 +32,17 @@ public:
 	/// @param y 縦の大きさ
 	void GetScreenSize(int& x, int& y) const;
 
+	/// @brief floatでのスクリーンサイズの取得
+	/// @param x 縦の大きさ
+	/// @param y 横の大きさ
+	void GetScreenSize(float& x, float& y) const;
+
 	/// @brief 描画対象に設定
 	void Setup(void) const;
 
 	/// @brief シェーダー使用時のマルチレンダーターゲットとして描画対象に設定
 	/// @param index 出力先の番号
-	/// @param releaseFlg 設定を解除するか
-	void Setup(int index, bool releaseFlg = false) const;
+	void Setup(int index) const;
 
 	/// @brief スクリーンの初期化
 	void Clear(void) const;

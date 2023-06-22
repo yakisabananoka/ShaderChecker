@@ -22,8 +22,10 @@ public:
 	SceneManager& operator=(SceneManager&&) = delete;
 
 private:
+	/// @brief 描画処理
 	void Draw(void) const;
 
+	/// @brief シーンの変更
 	void ChangeScene(void);
 
 	ScenePtr scene_;						//シーン

@@ -7,9 +7,9 @@ class VertexShader final :
 	public Shader
 {
 public:
-	/// @brief コンストラクタ
-	/// @param path ファイルパス
-	VertexShader(std::filesystem::path path);
+
+	static VertexShaderPtr Create(const std::filesystem::path& path);
+
 	~VertexShader() override = default;
 
 	/// @brief 開始処理
@@ -21,6 +21,11 @@ public:
 	VertexShader(const VertexShader&) = delete;
 	VertexShader& operator=(const VertexShader&) = delete;
 
-	VertexShader(VertexShader&&) = default;
-	VertexShader& operator=(VertexShader&&) = default;
+	VertexShader(VertexShader&&) = delete;
+	VertexShader& operator=(VertexShader&&) = delete;
+
+private:
+	/// @brief コンストラクタ
+	/// @param path ファイルパス
+	VertexShader(const std::filesystem::path& path);
 };

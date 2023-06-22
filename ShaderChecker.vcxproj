@@ -110,6 +110,9 @@
       <ShaderType>Pixel</ShaderType>
       <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
     </FxCompile>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -135,6 +138,9 @@
       <ShaderType>Pixel</ShaderType>
       <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
     </FxCompile>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -156,6 +162,9 @@
       <ShaderType>Pixel</ShaderType>
       <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
     </FxCompile>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -181,6 +190,9 @@
       <ShaderType>Pixel</ShaderType>
       <ObjectFileOutput>$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).pso</ObjectFileOutput>
     </FxCompile>
+    <PostBuildEvent>
+      <Command>xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Common\StopWatch.cpp" />
@@ -190,10 +202,12 @@
     <ClCompile Include="Source\Graphics\Drawable\Model.cpp" />
     <ClCompile Include="Source\Graphics\Shader\PixelShader.cpp" />
     <ClCompile Include="Source\Graphics\Drawable\Screen.cpp" />
+    <ClCompile Include="Source\Graphics\Drawable\RenderTargets.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Shader\VertexShader.cpp" />
     <ClCompile Include="Source\Scene\Deriverd\2D\ConstantBufferScene.cpp" />
     <ClCompile Include="Source\Scene\Deriverd\2D\ImageScene.cpp" />
+    <ClCompile Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.cpp" />
     <ClCompile Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
@@ -210,11 +224,13 @@
     <ClInclude Include="Source\Graphics\Drawable\Model.h" />
     <ClInclude Include="Source\Graphics\Shader\PixelShader.h" />
     <ClInclude Include="Source\Graphics\Drawable\Screen.h" />
+    <ClInclude Include="Source\Graphics\Drawable\RenderTargets.h" />
     <ClInclude Include="Source\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Graphics\UsingGraphics.h" />
     <ClInclude Include="Source\Graphics\Shader\VertexShader.h" />
     <ClInclude Include="Source\Scene\Deriverd\2D\ConstantBufferScene.h" />
     <ClInclude Include="Source\Scene\Deriverd\2D\ImageScene.h" />
+    <ClInclude Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.h" />
     <ClInclude Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.h" />
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\SceneManager.h" />

@@ -5,7 +5,7 @@
 class Camera
 {
 public:
-	Camera();
+	
 	virtual ~Camera() = default;
 
 	/// @brief カメラの使用を設定
@@ -29,6 +29,9 @@ public:
 
 	Camera(Camera&&) = default;
 	Camera& operator=(Camera&&) = default;
+
+protected:
+	Camera();
 
 private:
 	float near_;		//手前クリップ距離

@@ -3,11 +3,6 @@
 #include "Shader.h"
 #include "ConstantBuffer.h"
 
-Shader::Shader(int handle):
-	handle_(handle)
-{
-}
-
 Shader::~Shader()
 {
 	DeleteShader(handle_);
@@ -15,31 +10,31 @@ Shader::~Shader()
 
 void Shader::SetConstantBuffer(ConstantBufferBaseWeakPtr ptr, int slot)
 {
-	constantBufferInfos_[slot] = std::move(ptr);		//スロット番号をキーとしてハッシュマップに保持
+	constantBufferInfo_[slot] = std::move(ptr);		//スロット番号をキーとしてハッシュマップに保持
 }
 
-Shader::Shader(Shader&& shader) noexcept :
-	handle_(shader.handle_)
+void Shader::SetConstantBuffer(nullptr_t, int slot)
 {
-	shader.handle_ = -1;
+	if (constantBufferInfo_.contains(slot))
+	{
+		constantBufferInfo_.erase(slot);
+	}
 }
 
-Shader& Shader::operator=(Shader&& shader) noexcept
+Shader::Shader(int handle) :
+	handle_(handle)
 {
-	handle_ = shader.handle_;
-	shader.handle_ = -1;
-	return *this;
 }
 
 void Shader::BeginConstantBuffer(int shaderType) const
 {
 	//設定された全定数バッファの取り出し
-	for (const auto& [slot, ptr] : constantBufferInfos_)
+	for (const auto& [slot, ptr] : constantBufferInfo_)
 	{
 		//定数バッファが生きている場合はロック
 		if (const auto constantBufferPtr = ptr.lock())
 		{
-			SetShaderConstantBuffer(constantBufferPtr->GetHandle(), shaderType, slot);		//シェーダーに対して定数バッファのハンドルをセット
+			constantBufferPtr->Setup(slot, shaderType);		//シェーダーに対して定数バッファのハンドルをセット
 		}
 	}
 }
@@ -47,8 +42,8 @@ void Shader::BeginConstantBuffer(int shaderType) const
 void Shader::EndConstantBuffer(int shaderType) const
 {
 	//ハッシュマップからキーのみを取り出し
-	for (const auto& slot : constantBufferInfos_ | std::views::keys)
+	for (const auto& slot : constantBufferInfo_ | std::views::keys)
 	{
-		SetShaderConstantBuffer(-1, shaderType, slot);							//設定された定数バッファを解除する
+		SetShaderConstantBuffer(-1, shaderType, slot);		//設定された定数バッファを解除する
 	}
 }

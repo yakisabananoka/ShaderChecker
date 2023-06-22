@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <filesystem>
+#include <functional>
 #include <DxLib.h>
 #include "Graphics/UsingGraphics.h"
 
@@ -7,9 +8,16 @@
 class Model
 {
 public:
-	/// @brief コンストラクタ
+	/// @brief 生成関数
 	/// @param path ファイルパス
-	Model(const std::filesystem::path& path);
+	/// @return モデル
+	static ModelPtr Create(const std::filesystem::path& path);
+
+	/// @brief コピー生成
+	/// @param model モデル
+	/// @return モデル
+	static ModelPtr Create(const Model& model);
+
 	~Model();
 
 	/// @brief 位置の設定
@@ -40,12 +48,16 @@ public:
 	/// @param pixel ピクセルシェーダー
 	void Draw(const VertexShader& vertex, const PixelShader& pixel) const;
 
+	Model(Model&& model) = delete;
+	Model& operator=(Model&& model) = delete;
+
+private:
 	Model(const Model& model);
 	Model& operator=(const Model& model);
 
-	Model(Model&& model) noexcept;
-	Model& operator=(Model&& model) noexcept;
+	/// @brief コンストラクタ
+	/// @param path ファイルパス
+	Model(const std::filesystem::path& path);
 
-private:
 	int handle_;		//ハンドル
 };

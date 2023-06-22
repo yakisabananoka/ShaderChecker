@@ -1,10 +1,8 @@
 ﻿#pragma once
+#include <filesystem>
 #include "Scene/Scene.h"
 #include "Scene/UsingScene.h"
-#include "Graphics/Drawable/Model.h"
-#include "Graphics/Shader/VertexShader.h"
-#include "Graphics/Shader/PixelShader.h"
-#include "Graphics/Camera/PerspectiveCamera.h"
+#include "Graphics/UsingGraphics.h"
 
 class ModelFor1FrameScene final:
 	public Scene
@@ -31,9 +29,9 @@ private:
 		const std::filesystem::path& vertexShaderPath,
 		const std::filesystem::path& pixelShaderPath);
 
-	Model model_;					//モデル
-	PerspectiveCamera camera_;		//カメラ
+	ModelPtr model_;					//モデル
+	PerspectiveCameraPtr camera_;		//カメラ
 
-	VertexShader vertexShader_;		//頂点シェーダー
-	PixelShader pixelShader_;		//ピクセルシェーダー
+	VertexShaderPtr vertexShader_;		//頂点シェーダー
+	PixelShaderPtr pixelShader_;		//ピクセルシェーダー
 };

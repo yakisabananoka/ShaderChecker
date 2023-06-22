@@ -2,9 +2,14 @@
 #include "Graphics/Shader/VertexShader.h"
 #include "Graphics/Shader/PixelShader.h"
 
-Model::Model(const std::filesystem::path& path):
-	handle_(MV1LoadModel(path.string().c_str()))
+ModelPtr Model::Create(const std::filesystem::path& path)
 {
+	return ModelPtr(new Model(path));
+}
+
+ModelPtr Model::Create(const Model& model)
+{
+	return ModelPtr(new Model(model));
 }
 
 Model::~Model()
@@ -63,15 +68,7 @@ Model& Model::operator=(const Model& model)
 	return *this;
 }
 
-Model::Model(Model&& model) noexcept:
-	handle_(model.handle_)
+Model::Model(const std::filesystem::path& path) :
+	handle_(MV1LoadModel(path.string().c_str()))
 {
-	model.handle_ = -1;
-}
-
-Model& Model::operator=(Model&& model) noexcept
-{
-	handle_ = model.handle_;
-	model.handle_ = -1;
-	return *this;
 }

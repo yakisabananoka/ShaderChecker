@@ -8,16 +8,16 @@ public:
 	ConstantBufferBase() = default;
 	virtual ~ConstantBufferBase() = default;
 
-	/// @brief ハンドルの取得
-	/// @return ハンドルの参照
-	[[nodiscard]]
-	virtual const int& GetHandle(void)const = 0;
+	/// @brief シェーダーの使用設定
+	/// @param slot スロット番号
+	/// @param shaderType シェーダーの種類
+	virtual void Setup(int slot, int shaderType) const = 0;
 
 	ConstantBufferBase(const ConstantBufferBase&) = delete;
 	ConstantBufferBase& operator=(const ConstantBufferBase&) = delete;
 
-	ConstantBufferBase(ConstantBufferBase&&) = default;
-	ConstantBufferBase& operator=(ConstantBufferBase&&) = default;
+	ConstantBufferBase(ConstantBufferBase&&) = delete;
+	ConstantBufferBase& operator=(ConstantBufferBase&&) = delete;
 
 };
 
@@ -33,11 +33,6 @@ public:
 
 	~ConstantBuffer() override;
 
-	/// @brief ハンドルの取得
-	/// @return ハンドル
-	[[nodiscard]]
-	const int& GetHandle(void)const override;
-
 	/// @brief 値の取得
 	/// @return 値の参照
 	[[nodiscard]]
@@ -46,11 +41,16 @@ public:
 	/// @brief 更新(値を変更した後は必ず行う)
 	void Update(void) const;
 
+	/// @brief シェーダーの使用設定
+	/// @param slot スロット番号
+	/// @param shaderType シェーダーの種類
+	void Setup(int slot, int shaderType) const override;
+
 	ConstantBuffer(const ConstantBuffer&) = delete;
 	ConstantBuffer& operator=(const ConstantBuffer&) = delete;
 
-	ConstantBuffer(ConstantBuffer&& constantBuffer) noexcept;
-	ConstantBuffer& operator=(ConstantBuffer&& constantBuffer) noexcept;
+	ConstantBuffer(ConstantBuffer&&) = delete;
+	ConstantBuffer& operator=(ConstantBuffer&&) = delete;
 
 private:
 	ConstantBuffer();

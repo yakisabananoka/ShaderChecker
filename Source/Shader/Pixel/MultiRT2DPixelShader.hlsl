@@ -9,19 +9,13 @@ struct PixelOutput
 
 #include "PixelShader2DHeader.hlsli"
 
-cbuffer Test : register(b3)
-{
-    float time; //経過時間
-}
+//マルチレンダーターゲットのサンプル
 
 //エントリーポイント
 PS_OUTPUT main(PS_INPUT input)
 {
     PS_OUTPUT output;
-
     output.color = tex.Sample(texSampler, input.uv); //テクスチャからサンプリングを行う
-
-    output.color.r = (sin(time) + 1) / 2; //定数バッファに入ってきた経過時間を使用してR要素をsin波で変動させる
 
     //α値が0の場合は描画を行わない(本来はαブレンドによる透過が望ましい)
     if (output.color.a == 0)
@@ -29,6 +23,7 @@ PS_OUTPUT main(PS_INPUT input)
         discard;
     }
 
+    //RGBの要素を分解
     output.colorR = float4(output.color.r, 0, 0, output.color.a);
     output.colorG = float4(0, output.color.g, 0, output.color.a);
     output.colorB = float4(0, 0, output.color.b, output.color.a);

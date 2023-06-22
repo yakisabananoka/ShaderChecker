@@ -27,7 +27,7 @@ ScreenPtr Screen::Create(void)
 
 ScreenPtr Screen::Create(int x, int y, bool transFlg)
 {
-	return ImagePtrTemplate<Screen>(new Screen(x, y, transFlg));
+	return ScreenPtr(new Screen(x, y, transFlg));
 }
 
 const Screen& Screen::GetBackScreen(void)
@@ -46,14 +46,19 @@ void Screen::GetScreenSize(int& x, int& y) const
 	GetGraphSize(handle_, &x, &y);
 }
 
+void Screen::GetScreenSize(float& x, float& y) const
+{
+	GetGraphSizeF(handle_, &x, &y);
+}
+
 void Screen::Setup(void) const
 {
 	SetDrawScreen(handle_);
 }
 
-void Screen::Setup(int index, bool releaseFlg) const
+void Screen::Setup(int index) const
 {
-	SetRenderTargetToShader(index, releaseFlg ? -1 : handle_);
+	SetRenderTargetToShader(index, handle_);
 }
 
 void Screen::Clear(void) const
