@@ -15,6 +15,11 @@ ScenePtrTemplate<ModelFor1FrameScene> ModelFor1FrameScene::Create(
 
 void ModelFor1FrameScene::Update(void)
 {
+	auto rot = model_->GetRotation();
+	rot.y += 0.01f;
+
+	model_->SetRotation(rot);
+
 	//ここから描画処理
 
 	screen_->Setup();			//スクリーンをセット

@@ -29,7 +29,13 @@ void SceneManager::Update(void)
 		return;
 	}
 
+	stopWatch_.Reset();
+	stopWatch_.Start();	//計測開始
+
 	scene_->Update();	//シーンの更新
+
+	stopWatch_.Stop();	//計測終了
+
 	Draw();				//シーンの描画
 }
 
@@ -41,6 +47,9 @@ void SceneManager::Draw(void) const
 	backScreen.Clear();
 
 	scene_->GetScreen().Draw(0.0f, 0.0f, true);		//シーンのスクリーンに対して描画
+
+	//描画情報表示
+	DrawFormatString(0, 0, 0xffffff, "DrawCall:%d\nProcessTime:%.6f", GetDrawCallCount(), stopWatch_.GetNowCount());
 }
 
 void SceneManager::ChangeScene(void)

@@ -154,5 +154,8 @@
     <None Include="Source\HLSLShader\Common\CommonFunctionHeader.hlsli" />
     <None Include="Source\HLSLShader\Pixel\PixelFunctionHeader.hlsli" />
     <None Include="Source\HLSLShader\Vertex\VertexFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\CommonStructuresHeader.hlsli" />
+    <None Include="Source\HLSLShader\Vertex\VertexStructuresHeader.hlsli" />
+    <None Include="Source\HLSLShader\Pixel\PixelStructuresHeader.hlsli" />
   </ItemGroup>
 </Project>

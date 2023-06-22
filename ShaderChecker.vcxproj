@@ -279,11 +279,14 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
     </FxCompile>
     <None Include="Source\HLSLShader\Common\CommonFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\CommonStructuresHeader.hlsli" />
     <None Include="Source\HLSLShader\Pixel\PixelFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Pixel\PixelStructuresHeader.hlsli" />
     <None Include="Source\HLSLShader\Vertex\VertexFunctionHeader.hlsli" />
     <None Include="Source\HLSLShader\Vertex\VertexInputHeader.hlsli">
       <FileType>Document</FileType>
     </None>
+    <None Include="Source\HLSLShader\Vertex\VertexStructuresHeader.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\HLSLShader\Common\CommonShader3DHeader.hlsli" />

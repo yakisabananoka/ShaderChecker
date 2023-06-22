@@ -17,6 +17,16 @@ Model::~Model()
 	MV1DeleteModel(handle_);
 }
 
+VECTOR Model::GetPosition(void) const
+{
+	return MV1GetPosition(handle_);
+}
+
+VECTOR Model::GetRotation(void) const
+{
+	return MV1GetRotationXYZ(handle_);
+}
+
 void Model::SetPosition(float x, float y, float z)
 {
 	SetPosition({ x,y,z });

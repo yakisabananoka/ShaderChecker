@@ -20,6 +20,10 @@ public:
 
 	~Model();
 
+	/// @brief 位置の取得
+	/// @return 位置
+	VECTOR GetPosition(void) const;
+
 	/// @brief 位置の設定
 	/// @param x X座標
 	/// @param y Y座標
@@ -29,6 +33,10 @@ public:
 	/// @brief 位置の設定
 	/// @param pos 位置座標
 	void SetPosition(const VECTOR& pos);
+
+	/// @brief 回転の取得
+	/// @return 回転量
+	VECTOR GetRotation(void) const;
 
 	/// @brief 回転の設定
 	/// @param x X回転
