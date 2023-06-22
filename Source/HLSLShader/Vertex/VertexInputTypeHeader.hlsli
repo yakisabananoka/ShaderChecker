@@ -1,3 +1,6 @@
+//インクルードガード
+#if !defined(VERTEX_INPUT_TYPE_HEADER)
+#define VERTEX_INPUT_TYPE_HEADER
 
 //通常のモデル
 #define DX_MV1_VERTEX_TYPE_1FRAME       (1)     //1フレームの影響を受ける頂点
@@ -11,3 +14,5 @@
 
 //MV1モデル以外
 #define DX_VERTEX_TYPE_ORIGIN (7)               //DrawPolygon3D等の関数を使用した場合に送られる頂点
+
+#endif

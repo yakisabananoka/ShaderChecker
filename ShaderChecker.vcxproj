@@ -238,37 +238,37 @@
     <ClInclude Include="Source\System\Application.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Source\Shader\Pixel\ImagePixelShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Pixel\ImagePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\Shader\Pixel\Kuwahara2DShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Pixel\Kuwahara2DShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\Shader\Pixel\ModelPixelShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Pixel\ModelPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\Shader\Pixel\MultiRT2DPixelShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Pixel\MultiRT2DPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\Shader\Pixel\UseConstantBufferShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Pixel\UseConstantBufferShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\Shader\Vertex\ModelVertexShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Vertex\ModelVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -278,20 +278,20 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
     </FxCompile>
-    <None Include="Source\Shader\Common\CommonFunctionHeader.hlsli" />
-    <None Include="Source\Shader\Pixel\PixelFunctionHeader.hlsli" />
-    <None Include="Source\Shader\Vertex\VertexFunctionHeader.hlsli" />
-    <None Include="Source\Shader\Vertex\VertexInput.hlsli">
+    <None Include="Source\HLSLShader\Common\CommonFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Pixel\PixelFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Vertex\VertexFunctionHeader.hlsli" />
+    <None Include="Source\HLSLShader\Vertex\VertexInputHeader.hlsli">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shader\Common\CommonShader3DHeader.hlsli" />
-    <None Include="Source\Shader\Common\VertexToPixelHeader.hlsli" />
-    <None Include="Source\Shader\Pixel\PixelShader2DHeader.hlsli" />
-    <None Include="Source\Shader\Pixel\PixelShader3DHeader.hlsli" />
-    <None Include="Source\Shader\Vertex\VertexInputType.hlsli" />
-    <None Include="Source\Shader\Vertex\VertexShader3DHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\CommonShader3DHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\VertexToPixelHeader.hlsli" />
+    <None Include="Source\HLSLShader\Pixel\PixelShader2DHeader.hlsli" />
+    <None Include="Source\HLSLShader\Pixel\PixelShader3DHeader.hlsli" />
+    <None Include="Source\HLSLShader\Vertex\VertexInputTypeHeader.hlsli" />
+    <None Include="Source\HLSLShader\Vertex\VertexShader3DHeader.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,18 +1,23 @@
+//インクルードガード
+#if !defined(VERTEX_SHADER_3D_HEADER)
+#define VERTEX_SHADER_3D_HEADER
+
+//VERTEX_INPUTが定義されていない場合はMV1_VERTEX
 #if !defined(VERTEX_INPUT)
-
-#include "VertexInputType.hlsli"
+#include "VertexInputTypeHeader.hlsli"
 #define VERTEX_INPUT (DX_MV1_VERTEX_TYPE_1FRAME)
-
 #endif
 
-#include "VertexInput.hlsli"
+#include "VertexInputHeader.hlsli"
 #include "../Common/CommonShader3DHeader.hlsli"
 #include "../Common/VertexToPixelHeader.hlsli"
 
+//頂点シェーダーの入力型のデフォルト定義
 #if !defined(VS_INPUT)
 #define VS_INPUT VertexInput
 #endif
 
+//頂点シェーダーの出力型のデフォルト定義
 #if !defined(VS_OUTPUT)
 #define VS_OUTPUT VertexToPixel
 #endif
@@ -49,7 +54,6 @@ struct VsLocalWorldMatrix
     float4 lwMatrix[DX_D3D11_VS_CONST_WORLD_MAT_NUM * 3];           // ローカル　→　ワールド行列
 };
 
-
 // 頂点シェーダー・ピクセルシェーダー共通パラメータ
 cbuffer cbD3D11_CONST_BUFFER_COMMON : register(b0)
 {
@@ -74,3 +78,4 @@ cbuffer cbD3D11_CONST_BUFFER_VS_LOCALWORLDMATRIX : register(b3)
     VsLocalWorldMatrix localWorldMatrix;
 };
 
+#endif

@@ -1,4 +1,8 @@
-#include "VertexInputType.hlsli"
+//インクルードガード
+#if !defined(VERTEX_INPUT_HEADER)
+#define VERTEX_INPUT_HEADER
+
+#include "VertexInputTypeHeader.hlsli"
 
 #if defined(VERTEX_INPUT)
 
@@ -101,6 +105,8 @@ struct VertexInput
     float2 uv0 : TEXCOORD0;     //テクスチャ座標0
     float2 uv1 : TEXCOORD1;     //テクスチャ座標1
 };
+#endif
+
 #endif
 
 #endif
