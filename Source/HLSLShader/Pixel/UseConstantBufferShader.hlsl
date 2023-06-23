@@ -7,7 +7,7 @@ cbuffer Test : register(b3)
 }
 
 //エントリーポイント
-float4 main(PS_INPUT input) : SV_TARGET
+PS_OUTPUT main(PS_INPUT input) : SV_TARGET
 {
     //テクスチャからサンプリングを行う
     float4 result = tex.Sample(texSampler, input.uv);

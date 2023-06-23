@@ -20,6 +20,7 @@ bool Application::Run(void)
 
 bool Application::Initialize(void)
 {
+	SetWindowText("ShaderChecker");				//ウィンドウタイトルの設定
 	SetGraphMode(1024, 768, 32);				//ウィンドウサイズの設定
 	SetOutApplicationLogValidFlag(false);		//ログファイルの出力無効化
 	ChangeWindowMode(true);						//ウィンドウモードに変更
@@ -30,7 +31,7 @@ bool Application::Initialize(void)
 	{
 		return false;
 	}
-
+	
 	SetUseZBuffer3D(true);			//Zバッファを使用
 	SetWriteZBuffer3D(true);		//Zバッファに書き込み
 

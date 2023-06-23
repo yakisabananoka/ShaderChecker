@@ -8,6 +8,11 @@ class ModelFor1FrameScene final:
 	public Scene
 {
 public:
+	/// @brief 生成関数
+	/// @param modelPath モデルのファイルパス
+	/// @param vertexShaderPath 頂点シェーダーのファイルパス
+	/// @param pixelShaderPath ピクセルシェーダーのファイルパス
+	/// @return 生成されたModelFor1FrameScene
 	static ScenePtrTemplate<ModelFor1FrameScene> Create(
 		const std::filesystem::path& modelPath,
 		const std::filesystem::path& vertexShaderPath,
@@ -15,6 +20,7 @@ public:
 
 	~ModelFor1FrameScene()override = default;
 
+	/// @brief 更新
 	void Update(void) override;
 
 	ModelFor1FrameScene(const ModelFor1FrameScene&) = delete;
@@ -24,10 +30,7 @@ public:
 	ModelFor1FrameScene& operator=(ModelFor1FrameScene&&) = delete;
 
 private:
-	ModelFor1FrameScene(
-		const std::filesystem::path& modelPath,
-		const std::filesystem::path& vertexShaderPath,
-		const std::filesystem::path& pixelShaderPath);
+	ModelFor1FrameScene(const std::filesystem::path& modelPath, const std::filesystem::path& vertexShaderPath, const std::filesystem::path& pixelShaderPath);
 
 	ModelPtr model_;					//モデル
 	PerspectiveCameraPtr camera_;		//カメラ

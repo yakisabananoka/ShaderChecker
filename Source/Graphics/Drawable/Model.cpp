@@ -47,6 +47,21 @@ void Model::SetRotation(const VECTOR& rot)
 	MV1SetRotationXYZ(handle_, rot);
 }
 
+VECTOR Model::GetScale(void) const
+{
+	return MV1GetScale(handle_);
+}
+
+void Model::SetScale(float x, float y, float z)
+{
+	SetScale({ x,y,z });
+}
+
+void Model::SetScale(const VECTOR& scale)
+{
+	MV1SetScale(handle_, scale);
+}
+
 void Model::Draw(void) const
 {
 	MV1DrawModel(handle_);
@@ -63,6 +78,45 @@ void Model::Draw(const VertexShader& vertex, const PixelShader& pixel) const
 
 	pixel.End();
 	vertex.End();
+
+	MV1SetUseOrigShader(false);
+}
+
+void Model::Draw(const VertexShader& vertex1Frame, const VertexShader& vertex4Frame, const VertexShader& vertex8Frame, const PixelShader& pixel) const
+{
+	MV1SetUseOrigShader(true);
+
+	const auto triangleListNum = MV1GetTriangleListNum(handle_);
+	for (int i = 0; i < triangleListNum; i++)
+	{
+		const VertexShader* vertexShader = nullptr;
+
+		const auto type = MV1GetTriangleListVertexType(handle_, i);
+		if (type == DX_MV1_VERTEX_TYPE_1FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_1FRAME)
+		{
+			vertexShader = &vertex1Frame;
+		}
+		else if(type == DX_MV1_VERTEX_TYPE_4FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_4FRAME)
+		{
+			vertexShader = &vertex4Frame;
+		}
+		else if(type == DX_MV1_VERTEX_TYPE_8FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_8FRAME)
+		{
+			vertexShader = &vertex8Frame;
+		}
+		else
+		{
+			continue;
+		}
+		
+		vertexShader->Begin();
+		pixel.Begin();
+
+		MV1DrawTriangleList(handle_, i);
+
+		pixel.End();
+		vertexShader->End();
+	}
 
 	MV1SetUseOrigShader(false);
 }

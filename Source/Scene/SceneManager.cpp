@@ -5,6 +5,7 @@
 #include "Scene/Deriverd/2D/ConstantBufferScene.h"
 #include "Scene/Deriverd/2D/MultiRenderTargetScene.h"
 #include "Scene/Deriverd/3D/ModelFor1FrameScene.h"
+#include "Scene/Deriverd/3D/ModelForAllFrameScene.h"
 
 SceneManager::SceneManager() :
 	index_(0)
@@ -13,7 +14,14 @@ SceneManager::SceneManager() :
 	sceneGenerators_.emplace_back(std::bind(ImageScene::Create, "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/Kuwahara2DShader.pso"));
 	sceneGenerators_.emplace_back(ConstantBufferScene::Create);
 	sceneGenerators_.emplace_back(std::bind(MultiRenderTargetScene::Create, "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/MultiRT2DPixelShader.pso", 4));
-	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "Assets/Model/cube.mv1", "Assets/ShaderBinary/Vertex/ModelVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "Assets/Model/cube.mv1", "Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(
+		ModelForAllFrameScene::Create,
+		"Assets/Model/human.mv1", 
+		"Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso",
+		"Assets/ShaderBinary/Vertex/Model4FrameVertexShader.vso",
+		"Assets/ShaderBinary/Vertex/Model8FrameVertexShader.vso",
+		"Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
 
 	scene_ = sceneGenerators_[index_]();
 }

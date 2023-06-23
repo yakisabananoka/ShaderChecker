@@ -18,11 +18,7 @@
 
 	//ピクセルシェーダーの出力型のデフォルト定義
 	#if !defined(PS_OUTPUT)
-		struct PixelOutput
-		{
-		    float color : SV_TARGET;
-		};
-		#define PS_OUTPUT PixelOutput
+		#define PS_OUTPUT float4
 	#endif
 
 	Texture2D tex : register(t0);               //テクスチャ

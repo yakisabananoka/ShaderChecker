@@ -48,6 +48,20 @@ public:
 	/// @param rot 回転量
 	void SetRotation(const VECTOR& rot);
 
+	/// @brief 拡大率の取得
+	/// @return 拡大率
+	VECTOR GetScale(void) const;
+
+	/// @brief 拡大率の設定
+	/// @param x X拡大率
+	/// @param y Y拡大率
+	/// @param z Z拡大率
+	void SetScale(float x, float y, float z);
+
+	/// @brief 拡大率の設定
+	/// @param scale 拡大率
+	void SetScale(const VECTOR& scale);
+
 	/// @brief 描画
 	void Draw(void) const;
 
@@ -55,6 +69,13 @@ public:
 	/// @param vertex 頂点シェーダー
 	/// @param pixel ピクセルシェーダー
 	void Draw(const VertexShader& vertex, const PixelShader& pixel) const;
+
+	/// @brief シェーダーを利用した描画(各フレーム形式に対応)
+	/// @param vertex1Frame 頂点シェーダー(1フレーム)
+	/// @param vertex4Frame 頂点シェーダー(1～4フレーム)
+	/// @param vertex8Frame 頂点シェーダー(1～8フレーム)
+	/// @param pixel ピクセルシェーダー
+	void Draw(const VertexShader& vertex1Frame, const VertexShader& vertex4Frame, const VertexShader& vertex8Frame, const PixelShader& pixel) const;
 
 	Model(Model&& model) = delete;
 	Model& operator=(Model&& model) = delete;

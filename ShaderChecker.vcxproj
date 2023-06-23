@@ -209,6 +209,7 @@
     <ClCompile Include="Source\Scene\Deriverd\2D\ImageScene.cpp" />
     <ClCompile Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.cpp" />
     <ClCompile Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.cpp" />
+    <ClCompile Include="Source\Scene\Deriverd\3D\ModelForAllFrameScene.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
     <ClCompile Include="Source\System\Application.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="Source\Scene\Deriverd\2D\ImageScene.h" />
     <ClInclude Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.h" />
     <ClInclude Include="Source\Scene\Deriverd\3D\ModelFor1FrameScene.h" />
+    <ClInclude Include="Source\Scene\Deriverd\3D\ModelForAllFrameScene.h" />
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\SceneManager.h" />
     <ClInclude Include="Source\Scene\UsingScene.h" />
@@ -268,7 +270,27 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="Source\HLSLShader\Vertex\ModelVertexShader.hlsl">
+    <FxCompile Include="Source\HLSLShader\Vertex\Model1FrameVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Source\HLSLShader\Vertex\Model4FrameVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)Assets\ShaderBinary\%(ShaderType)\%(Filename).vso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Source\HLSLShader\Vertex\Model8FrameVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -280,6 +302,7 @@
     </FxCompile>
     <None Include="Source\HLSLShader\Common\CommonFunctionHeader.hlsli" />
     <None Include="Source\HLSLShader\Common\CommonStructuresHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\VertexToPixelTypeHeader.hlsli" />
     <None Include="Source\HLSLShader\Pixel\PixelFunctionHeader.hlsli" />
     <None Include="Source\HLSLShader\Pixel\PixelStructuresHeader.hlsli" />
     <None Include="Source\HLSLShader\Vertex\VertexFunctionHeader.hlsli" />

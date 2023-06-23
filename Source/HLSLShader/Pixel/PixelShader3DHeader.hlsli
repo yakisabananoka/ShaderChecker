@@ -16,6 +16,7 @@
 	#endif
 
 	#include "PixelStructuresHeader.hlsli"
+	#include "PixelFunctionHeader.hlsli"
 
 	// 基本パラメータ
 	cbuffer cbD3D11_CONST_BUFFER_PS_BASE : register(b1)
@@ -72,7 +73,5 @@
 		SamplerState shadowMap2Sampler            : register(s10); 	    	// シャドウマップ２テクスチャ
 		Texture2D    shadowMap2Texture            : register(t10);	    	// シャドウマップ２テクスチャ
 	#endif
-
-	#include "PixelFunctionHeader.hlsli"
 
 #endif

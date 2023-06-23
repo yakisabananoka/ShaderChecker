@@ -4,7 +4,7 @@
 //最適化とかしてないから遅いかも
 
 //エントリーポイント
-float4 main(PS_INPUT input) : SV_TARGET
+PS_OUTPUT main(PS_INPUT input) : SV_TARGET
 {
     //画像サイズの取得
 	uint2 size;

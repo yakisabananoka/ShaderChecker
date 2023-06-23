@@ -1,12 +1,15 @@
+#define VERTEX_INPUT_TYPE VERTEX_INPUT_TYPE_4FRAME
 #include "VertexShader3DHeader.hlsli"
 
 //エントリーポイント
 VS_OUTPUT main(VS_INPUT input)
 {
+    const float4x3 lwMatrix = CalculateLocalWorldMatrix(input.blendIndices0, input.blendWeight0, localWorldMatrix);
+
 	VS_OUTPUT ret;
     ret.svPos = float4(input.pos, 1.0f);
 
-    ret.worldPos = mul(ret.svPos, base.localWorldMatrix);
+    ret.worldPos = mul(ret.svPos, lwMatrix);
     ret.svPos.xyz = ret.worldPos;
 
     ret.viewPos = mul(ret.svPos, base.viewMatrix);
@@ -14,12 +17,12 @@ VS_OUTPUT main(VS_INPUT input)
 
     ret.svPos = mul(ret.svPos, base.projectionMatrix);
 
-    ret.worldNorm = normalize(mul(float4(input.norm, 0.0f), base.localWorldMatrix));
-    ret.viewNorm = normalize(mul(float4(ret.worldNorm, 0.0f), base.viewMatrix));
+    ret.viewNorm = normalize(mul(float4(input.norm, 0.0f), lwMatrix));
+    ret.viewNorm = normalize(mul(float4(ret.viewNorm, 0.0f), base.viewMatrix));
 
     ret.uv = input.uv0.xy;
     ret.diffuse = input.diffuse;
     ret.specular = input.specular;
 
-	return ret;
+    return ret;
 }

@@ -17,6 +17,7 @@
 	#endif
 
 	#include "VertexStructuresHeader.hlsli"
+	#include "VertexFunctionHeader.hlsli"
 
 	// 基本パラメータ
 	cbuffer cbD3D11_CONST_BUFFER_VS_BASE : register(b1)

@@ -69,6 +69,9 @@
     <ClCompile Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scene\Deriverd\3D\ModelForAllFrameScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\System\Application.h">
@@ -134,14 +137,19 @@
     <ClInclude Include="Source\Scene\Deriverd\2D\MultiRenderTargetScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Scene\Deriverd\3D\ModelForAllFrameScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\HLSLShader\Pixel\ImagePixelShader.hlsl" />
-    <FxCompile Include="Source\HLSLShader\Vertex\ModelVertexShader.hlsl" />
+    <FxCompile Include="Source\HLSLShader\Vertex\Model1FrameVertexShader.hlsl" />
     <FxCompile Include="Source\HLSLShader\Pixel\ModelPixelShader.hlsl" />
     <FxCompile Include="Source\HLSLShader\Pixel\MultiRT2DPixelShader.hlsl" />
     <FxCompile Include="Source\HLSLShader\Pixel\Kuwahara2DShader.hlsl" />
     <FxCompile Include="Source\HLSLShader\Pixel\UseConstantBufferShader.hlsl" />
+    <FxCompile Include="Source\HLSLShader\Vertex\Model4FrameVertexShader.hlsl" />
+    <FxCompile Include="Source\HLSLShader\Vertex\Model8FrameVertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\HLSLShader\Pixel\PixelShader3DHeader.hlsli" />
@@ -157,5 +165,6 @@
     <None Include="Source\HLSLShader\Common\CommonStructuresHeader.hlsli" />
     <None Include="Source\HLSLShader\Vertex\VertexStructuresHeader.hlsli" />
     <None Include="Source\HLSLShader\Pixel\PixelStructuresHeader.hlsli" />
+    <None Include="Source\HLSLShader\Common\VertexToPixelTypeHeader.hlsli" />
   </ItemGroup>
 </Project>

@@ -6,10 +6,10 @@
 
 	//VERTEX_INPUT_TYPEが定義されていない場合はDX_MV1_VERTEX_TYPE_1FRAMEに設定
 	#if !defined(VERTEX_INPUT_TYPE)
-		#define VERTEX_INPUT_TYPE DX_MV1_VERTEX_TYPE_1FRAME
+		#define VERTEX_INPUT_TYPE	VERTEX_INPUT_TYPE_1FRAME
 	#endif
 
-	#if (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_1FRAME)
+	#if (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_1FRAME)
 		//1フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -20,7 +20,7 @@
 		    float4 uv0 : TEXCOORD0;         // テクスチャ座標
 		    float4 uv1 : TEXCOORD1;         // サブテクスチャ座標
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_4FRAME)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_4FRAME)
 		//1～4フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -33,7 +33,7 @@
 		    int4 blendIndices0 : BLENDINDICES0; // ボーン処理用 Float型定数配列インデックス0
 		    float4 blendWeight0 : BLENDWEIGHT0; // ボーン処理用ウエイト値0
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_8FRAME)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_8FRAME)
 		//5～8フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -48,7 +48,7 @@
 		    int4 blendIndices1 : BLENDINDICES1; // ボーン処理用 Float型定数配列インデックス1
 		    float4 blendWeight1 : BLENDWEIGHT1; // ボーン処理用ウエイト値1
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_NMAP_1FRAME)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_NMAP_1FRAME)
 		//法線マップの情報が含まれる1フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -61,7 +61,7 @@
 		    float3 tan : TANGENT0;              // 接線(ローカル空間)
 		    float3 bin : BINORMAL0;             // 従法線(ローカル空間)
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_NMAP_4FRAME)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_NMAP_4FRAME)
 		//法線マップの情報が含まれる1～4フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -76,7 +76,7 @@
 		    int4 blendIndices0 : BLENDINDICES0; // ボーン処理用 Float型定数配列インデックス0
 		    float4 blendWeight0 : BLENDWEIGHT0; // ボーン処理用ウエイト値0
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_MV1_VERTEX_TYPE_NMAP_8FRAME)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_NMAP_8FRAME)
 		//法線マップの情報が含まれる5～8フレームの影響を受ける頂点
 		struct VertexInput
 		{
@@ -93,7 +93,7 @@
 		    int4 blendIndices1 : BLENDINDICES1; // ボーン処理用 Float型定数配列インデックス1
 		    float4 blendWeight1 : BLENDWEIGHT1; // ボーン処理用ウエイト値1
 		};
-	#elif (VERTEX_INPUT_TYPE == DX_VERTEX_TYPE_ORIGIN)
+	#elif (VERTEX_INPUT_TYPE == VERTEX_INPUT_TYPE_ORIGIN)
 		//DrawPolygon3D等の関数を使用した場合に送られる頂点
 		struct VertexInput
 		{
