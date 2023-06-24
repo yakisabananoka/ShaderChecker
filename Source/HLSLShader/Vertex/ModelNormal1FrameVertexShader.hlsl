@@ -32,9 +32,9 @@ VS_OUTPUT main(VS_INPUT input)
     ret.viewNorm = normalize(mul(float4(input.norm, 0.0f), base.localWorldMatrix));
     ret.viewNorm = normalize(mul(float4(ret.viewNorm, 0.0f), base.viewMatrix));
 
+    ret.uv = input.uv0.xy; //UV‚ğ‘ã“ü
     ret.diffuse = input.diffuse;        //ŠgU”½ËF‚ğ‘ã“ü
     ret.specular = input.specular;      //‹¾–Ê”½ËF‚ğ‘ã“ü
-    ret.uv = input.uv0.xy;              //UV‚ğ‘ã“ü
 
 	return ret;
 }

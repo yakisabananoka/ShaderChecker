@@ -59,6 +59,7 @@ PixelShader::PixelShader(const std::filesystem::path& path) :
 
 void PixelShader::BeginRenderTarget(void) const
 {
+	//レンダーターゲットの開始処理
 	if (const auto renderTargetPtr = renderTargets_.lock())
 	{
 		renderTargetPtr->Begin();
@@ -73,6 +74,7 @@ void PixelShader::BeginRenderTarget(void) const
 
 void PixelShader::EndRenderTarget(void) const
 {
+	//レンダーターゲットの終了処理
 	if (const auto renderTargetPtr = renderTargets_.lock())
 	{
 		renderTargetPtr->End();

@@ -15,6 +15,7 @@ void Shader::SetConstantBuffer(ConstantBufferBaseWeakPtr ptr, int slot)
 
 void Shader::SetConstantBuffer(nullptr_t, int slot)
 {
+	//定数バッファが存在する場合削除
 	if (constantBufferInfo_.contains(slot))
 	{
 		constantBufferInfo_.erase(slot);
