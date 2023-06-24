@@ -20,11 +20,11 @@ bool Application::Run(void)
 
 bool Application::Initialize(void)
 {
-	SetWindowText("ShaderChecker");				//ウィンドウタイトルの設定
-	SetGraphMode(1024, 768, 32);				//ウィンドウサイズの設定
-	SetOutApplicationLogValidFlag(false);		//ログファイルの出力無効化
-	ChangeWindowMode(true);						//ウィンドウモードに変更
-	SetUseDirect3D11(true);						//DirectX11を使用
+	SetOutApplicationLogValidFlag(false);									//ログファイルの出力無効化
+	SetWindowText("ShaderChecker(マウスホイールでシーン切り替え)");			//ウィンドウタイトルの設定
+	SetGraphMode(1024, 768, 32);											//ウィンドウサイズの設定
+	ChangeWindowMode(true);													//ウィンドウモードに変更
+	SetUseDirect3D11(true);													//DirectX11を使用
 
 	//DXライブラリを初期化
 	if(DxLib_Init() == -1)

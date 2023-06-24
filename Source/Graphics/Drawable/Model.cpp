@@ -69,56 +69,54 @@ void Model::Draw(void) const
 
 void Model::Draw(const VertexShader& vertex, const PixelShader& pixel) const
 {
-	MV1SetUseOrigShader(true);
+	MV1SetUseOrigShader(true);		//シェーダーを使ってMV1モデルを描画する前にtrueにする
 
-	vertex.Begin();
-	pixel.Begin();
+	vertex.Begin();					//頂点シェーダーの開始処理
+	pixel.Begin();					//ピクセルシェーダーの開始処理
 
-	Draw();
+	Draw();							//描画
 
-	pixel.End();
-	vertex.End();
+	pixel.End();					//ピクセルシェーダーの終了処理
+	vertex.End();					//頂点シェーダーの終了処理
 
-	MV1SetUseOrigShader(false);
+	MV1SetUseOrigShader(false);		//シェーダーを使ってMV1モデルを描画した後はfalseにする
 }
 
 void Model::Draw(const VertexShader& vertex1Frame, const VertexShader& vertex4Frame, const VertexShader& vertex8Frame, const PixelShader& pixel) const
 {
-	MV1SetUseOrigShader(true);
+	//ループ用に配列を作成
+	const VertexShader* vertexShaders[DX_MV1_VERTEX_TYPE_NUM];
 
+	vertexShaders[DX_MV1_VERTEX_TYPE_1FRAME] = &vertex1Frame;			//1フレームの影響のみを受ける場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_4FRAME] = &vertex4Frame;			//1～4フレームの影響を受ける頂点が一つでもある場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_8FRAME] = &vertex8Frame;			//5～8フレームの影響を受ける頂点が一つでもある場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_FREE_FRAME] = nullptr;				//上記に当てはまらない頂点を持つ場合
+
+	vertexShaders[DX_MV1_VERTEX_TYPE_NMAP_1FRAME] = &vertex1Frame;		//法線マップありで、1フレームの影響のみを受ける場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_NMAP_4FRAME] = &vertex4Frame;		//法線マップありで、1～4フレームの影響を受ける頂点が一つでもある場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_NMAP_8FRAME] = &vertex8Frame;		//法線マップありで、5～8フレームの影響を受ける頂点が一つでもある場合
+	vertexShaders[DX_MV1_VERTEX_TYPE_NMAP_FREE_FRAME] = nullptr;		//法線マップありで、上記に当てはまらない頂点を持つ場合
+
+	MV1SetUseOrigShader(true);		//シェーダーを使ってMV1モデルを描画する前にtrueにする
+
+	//モデル中のトライアングルリストの数だけ回す
 	const auto triangleListNum = MV1GetTriangleListNum(handle_);
 	for (int i = 0; i < triangleListNum; i++)
 	{
-		const VertexShader* vertexShader = nullptr;
+		//トライアングルリストの頂点タイプに一致したシェーダーがある場合はそれを取り出して処理
+		if (const auto* vertexShader = vertexShaders[MV1GetTriangleListVertexType(handle_, i)])
+		{
+			vertexShader->Begin();					//選択された頂点シェーダーの開始処理
+			pixel.Begin();							//ピクセルシェーダーの開始処理
 
-		const auto type = MV1GetTriangleListVertexType(handle_, i);
-		if (type == DX_MV1_VERTEX_TYPE_1FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_1FRAME)
-		{
-			vertexShader = &vertex1Frame;
-		}
-		else if(type == DX_MV1_VERTEX_TYPE_4FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_4FRAME)
-		{
-			vertexShader = &vertex4Frame;
-		}
-		else if(type == DX_MV1_VERTEX_TYPE_8FRAME || type == DX_MV1_VERTEX_TYPE_NMAP_8FRAME)
-		{
-			vertexShader = &vertex8Frame;
-		}
-		else
-		{
-			continue;
-		}
-		
-		vertexShader->Begin();
-		pixel.Begin();
+			MV1DrawTriangleList(handle_, i);		//トライアングルリスト単位での描画
 
-		MV1DrawTriangleList(handle_, i);
-
-		pixel.End();
-		vertexShader->End();
+			pixel.End();							//ピクセルシェーダーの終了処理
+			vertexShader->End();					//選択された頂点シェーダーの終了処理
+		}
 	}
 
-	MV1SetUseOrigShader(false);
+	MV1SetUseOrigShader(false);		//シェーダーを使ってMV1モデルを描画した後はfalseにする
 }
 
 Model::Model(const Model& model):

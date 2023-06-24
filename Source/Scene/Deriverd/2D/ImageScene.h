@@ -9,8 +9,11 @@ class ImageScene final:
 {
 public:
 	/// @brief ImageSceneの生成
+	///	@param name シーン名
+	///	@param imagePath 画像のファイルパス
+	///	@param pixelShaderPath ピクセルシェーダーのファイルパス
 	/// @return 生成されたImageScene
-	static ScenePtrTemplate<ImageScene> Create(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath);
+	static ScenePtrTemplate<ImageScene> Create(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath);
 
 	/// @brief デストラクタ
 	~ImageScene() override;
@@ -24,7 +27,7 @@ public:
 	ImageScene(ImageScene&&) = delete;
 	ImageScene& operator=(ImageScene&&) = delete;
 private:
-	ImageScene(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath);
+	ImageScene(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath);
 
 	ImagePtr image_;					//画像
 	PixelShaderPtr pixelShader_;		//画像用のピクセルシェーダー

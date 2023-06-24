@@ -4,7 +4,12 @@
 
 	#include "../Common/CommonFunctionHeader.hlsli"
 
-	void CalculateLocalWorldMatrixImplement(float4 indices, float4 weight, in VsLocalWorldMatrix localWorldMatrix, inout float3x4 mat)
+	/// @brief ローカル→ワールドのブレンド行列の作成
+	/// @param indices ボーン処理用インデックス
+	/// @param weight ボーン処理用ウェイト
+	/// @param localWorldMatrix ローカル→ワールドの行列
+	/// @param mat ブレンド行列の入出力
+	void CalculateLocalWorldMatrixImplement(in float4 indices, in float4 weight, in VsLocalWorldMatrix localWorldMatrix, inout float3x4 mat)
 	{
 	    mat[0] += localWorldMatrix.lwMatrix[indices.x + 0] * weight.x;
 		mat[0] += localWorldMatrix.lwMatrix[indices.y + 0] * weight.y;
@@ -22,14 +27,26 @@
 	    mat[2] += localWorldMatrix.lwMatrix[indices.w + 2] * weight.w;
 	}
 
-	float4x3 CalculateLocalWorldMatrix(float4 indices, float4 weight, in VsLocalWorldMatrix localWorldMatrix)
+	/// @brief ローカル→ワールドのブレンド行列の作成(1～4フレームの影響を受ける頂点を持つ場合)
+	/// @param indices ボーン処理用インデックス
+	/// @param weight ボーン処理用ウェイト
+	/// @param localWorldMatrix ローカル→ワールドの行列
+	/// @return ブレンド行列
+	float4x3 CalculateLocalWorldMatrix(in float4 indices, in float4 weight, in VsLocalWorldMatrix localWorldMatrix)
 	{
 	    float3x4 mat = float3x4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		CalculateLocalWorldMatrixImplement(indices, weight, localWorldMatrix, mat);
 		return transpose(mat);
 	}
 
-	float4x3 CalculateLocalWorldMatrix(float4 indices0, float4 weight0, float4 indices1, float4 weight1, in VsLocalWorldMatrix localWorldMatrix)
+	/// @brief ローカル→ワールドのブレンド行列の作成(5～8フレームの影響を受ける頂点を持つ場合)
+	/// @param indices0 ボーン処理用インデックス0
+	/// @param weight0 ボーン処理用ウェイト0
+	/// @param indices1 ボーン処理用インデックス1
+	/// @param weight1 ボーン処理用ウェイト1
+	/// @param localWorldMatrix ローカル→ワールドの行列
+	/// @return ブレンド行列
+	float4x3 CalculateLocalWorldMatrix(in float4 indices0, in float4 weight0, in float4 indices1, in float4 weight1, in VsLocalWorldMatrix localWorldMatrix)
 	{
 		float3x4 mat = float3x4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		CalculateLocalWorldMatrixImplement(indices0, weight0, localWorldMatrix, mat);

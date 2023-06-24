@@ -8,7 +8,12 @@ const Screen& Scene::GetScreen(void) const
 	return *screen_;
 }
 
-Scene::Scene() :
-	screen_(Screen::Create())
+const std::string& Scene::GetName(void) const
+{
+	return name_;
+}
+
+Scene::Scene(const std::string& name) :
+	screen_(Screen::Create()), name_(name)
 {
 }

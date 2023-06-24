@@ -52,18 +52,6 @@ void RenderTargets::Remove(void)
 	std::erase_if(screens_, [](const ScreenPtr& screen) { return !screen; });
 }
 
-void RenderTargets::Visit(std::function<bool(ScreenPtr&, unsigned int)> func)
-{
-	for (unsigned int index = 0; auto& screen : screens_)
-	{
-		if (!func(screen, index))
-		{
-			break;
-		}
-		index++;
-	}
-}
-
 void RenderTargets::Clear(void) const
 {
 	for (const auto& screen : screens_)
@@ -103,16 +91,6 @@ size_t RenderTargets::GetSize(void) const
 	return screens_.size();
 }
 
-ScreenPtr* RenderTargets::begin(void)
-{
-	return screens_.begin()._Ptr;
-}
-
-ScreenPtr* RenderTargets::end(void)
-{
-	return screens_.end()._Ptr;
-}
-
 void RenderTargets::operator+=(ScreenPtr screenPtr)
 {
 	Add(std::move(screenPtr));
@@ -133,4 +111,14 @@ RenderTargets::RenderTargets() = default;
 RenderTargets::RenderTargets(Screens&& screens) :
 	screens_(std::move(screens))
 {
+}
+
+ScreenPtr* begin(RenderTargets& renderTargets)
+{
+	return &renderTargets[0];
+}
+
+ScreenPtr* end(RenderTargets& renderTargets)
+{
+	return std::next(&renderTargets[static_cast<unsigned int>(renderTargets.GetSize() - 1)]);
 }

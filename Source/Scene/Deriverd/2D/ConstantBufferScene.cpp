@@ -27,6 +27,7 @@ void ConstantBufferScene::Update(void)
 }
 
 ConstantBufferScene::ConstantBufferScene() :
+	Scene("定数バッファを使ったシーン"),
 	image_(Image::Create("Assets/Image/texture0.png")),
 	pixelShader_(PixelShader::Create("Assets/ShaderBinary/Pixel/UseConstantBufferShader.pso")),
 	constantBuffer_(ConstantBuffer<Test>::Create())

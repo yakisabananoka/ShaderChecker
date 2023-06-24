@@ -24,8 +24,8 @@
 	// その他の行列
 	struct VsOtherMatrix
 	{
-	    float4 shadowMapLightViewProjectionMatrix[3][4];                // シャドウマップ用のライトビュー行列とライト射影行列を乗算したもの
-	    float4 textureMatrix[DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM][2];  // テクスチャ座標操作用行列
+	    float4x4 shadowMapLightViewProjectionMatrix[3];					// シャドウマップ用のライトビュー行列とライト射影行列を乗算したもの
+	    float4x2 textureMatrix[DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM];	// テクスチャ座標操作用行列
 	};
 
 	// スキニングメッシュ用の　ローカル　→　ワールド行列

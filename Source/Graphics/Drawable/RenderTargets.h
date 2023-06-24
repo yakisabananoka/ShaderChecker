@@ -47,10 +47,6 @@ public:
 	/// @brief nullptrが入っているスクリーンを除去
 	void Remove(void);
 
-	/// @brief 各スクリーンに対して任意の関数を実行
-	/// @param func 任意の関数(返り値：trueで続行、falseで途中終了 第一引数：スクリーンの参照 第二引数：インデックス)
-	void Visit(std::function<bool(ScreenPtr&, unsigned int)> func);
-
 	/// @brief 全スクリーンを初期化
 	void Clear(void) const;
 
@@ -63,14 +59,6 @@ public:
 	/// @brief 保持しているスクリーン数
 	/// @return スクリーン数
 	size_t GetSize(void) const;
-
-	/// @brief 範囲for文用begin
-	/// @return 先頭のスクリーンのポインタ
-	ScreenPtr* begin(void);
-
-	/// @brief 範囲for文用のend
-	/// @return 最後の次のスクリーンのポインタ
-	ScreenPtr* end(void);
 
 	void operator+=(ScreenPtr screenPtr);
 
@@ -87,3 +75,12 @@ private:
 
 	Screens screens_;		//スクリーンの配列
 };
+
+/// @brief 範囲for文用begin
+/// @return 先頭のスクリーンのポインタ
+ScreenPtr* begin(RenderTargets& renderTargets);
+
+/// @brief 範囲for文用のend
+/// @return 最後の次のスクリーンのポインタ
+ScreenPtr* end(RenderTargets& renderTargets);
+

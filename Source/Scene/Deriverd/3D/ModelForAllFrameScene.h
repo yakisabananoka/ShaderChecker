@@ -9,6 +9,7 @@ class ModelForAllFrameScene final :
 {
 public:
 	/// @brief 生成関数
+	///	@param name シーン名
 	/// @param modelPath モデルのファイルパス
 	/// @param vertex1FrameShaderPath 頂点シェーダー(1フレーム)のファイルパス
 	/// @param vertex4FrameShaderPath 頂点シェーダー(1～4フレーム)のファイルパス
@@ -16,6 +17,7 @@ public:
 	/// @param pixelShaderPath ピクセルシェーダーのファイルパス
 	/// @return 生成されたModelForAllFrameScene
 	static ScenePtrTemplate<ModelForAllFrameScene> Create(
+		const std::string& name,
 		const std::filesystem::path& modelPath,
 		const std::filesystem::path& vertex1FrameShaderPath,
 		const std::filesystem::path& vertex4FrameShaderPath,
@@ -35,6 +37,7 @@ public:
 
 private:
 	ModelForAllFrameScene(
+		const std::string& name,
 		const std::filesystem::path& modelPath,
 		const std::filesystem::path& vertex1FrameShaderPath,
 		const std::filesystem::path& vertex4FrameShaderPath,

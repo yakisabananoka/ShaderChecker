@@ -3,9 +3,9 @@
 #include "Graphics/Drawable/RenderTargets.h"
 #include "Graphics/Shader/PixelShader.h"
 
-ScenePtrTemplate<MultiRenderTargetScene> MultiRenderTargetScene::Create(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath, unsigned num)
+ScenePtrTemplate<MultiRenderTargetScene> MultiRenderTargetScene::Create(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath, unsigned num)
 {
-	return ScenePtrTemplate<MultiRenderTargetScene>(new MultiRenderTargetScene(imagePath, pixelShaderPath, num));
+	return ScenePtrTemplate<MultiRenderTargetScene>(new MultiRenderTargetScene(name, imagePath, pixelShaderPath, num));
 }
 
 MultiRenderTargetScene::~MultiRenderTargetScene() = default;
@@ -46,8 +46,8 @@ void MultiRenderTargetScene::Update(void)
 	//ここまで描画処理
 }
 
-MultiRenderTargetScene::MultiRenderTargetScene(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath, unsigned int num) :
-	image_(Image::Create(imagePath)), pixelShader_(PixelShader::Create(pixelShaderPath)), renderTargets_(RenderTargets::Create(num))
+MultiRenderTargetScene::MultiRenderTargetScene(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath, unsigned int num) :
+	Scene(name), image_(Image::Create(imagePath)), pixelShader_(PixelShader::Create(pixelShaderPath)), renderTargets_(RenderTargets::Create(num))
 {
 	pixelShader_->SetRenderTargets(renderTargets_);		//ピクセルシェーダーが出力する先のレンダーターゲットを設定
 }

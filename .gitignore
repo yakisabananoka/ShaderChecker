@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /*.exe
 /Assets/ShaderBinary
 /Log.txt
+/*.filters

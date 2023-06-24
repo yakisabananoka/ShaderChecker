@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <string>
 #include "UsingScene.h"
 #include "Graphics/UsingGraphics.h"
 
@@ -16,6 +17,10 @@ public:
 	/// @return スクリーン
 	const Screen& GetScreen(void) const;
 
+	/// @brief シーン名の取得
+	/// @return シーン名
+	const std::string& GetName(void) const;
+
 	Scene(const Scene&) = delete;
 	Scene& operator=(const Scene&) = delete;
 
@@ -23,8 +28,9 @@ public:
 	Scene& operator=(Scene&&) = delete;
 
 protected:
-	Scene();
+	Scene(const std::string& name);
 
-	ScreenPtr screen_;		//スクリーン
+	ScreenPtr screen_;			//スクリーン
+	std::string name_;			//シーン名
 
 };

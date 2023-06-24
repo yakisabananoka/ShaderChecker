@@ -4,9 +4,9 @@
 #include "Graphics/Shader/ConstantBuffer.h"
 #include "Graphics/Shader/PixelShader.h"
 
-ScenePtrTemplate<ImageScene> ImageScene::Create(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath)
+ScenePtrTemplate<ImageScene> ImageScene::Create(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath)
 {
-	return ScenePtrTemplate<ImageScene>(new ImageScene(imagePath, pixelShaderPath));
+	return ScenePtrTemplate<ImageScene>(new ImageScene(name, imagePath, pixelShaderPath));
 }
 
 ImageScene::~ImageScene() = default;
@@ -23,8 +23,7 @@ void ImageScene::Update(void)
 	//ここまで描画処理
 }
 
-ImageScene::ImageScene(const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath) :
-	image_(Image::Create(imagePath)),
-	pixelShader_(PixelShader::Create(pixelShaderPath))
+ImageScene::ImageScene(const std::string& name, const std::filesystem::path& imagePath, const std::filesystem::path& pixelShaderPath) :
+	Scene(name), image_(Image::Create(imagePath)), pixelShader_(PixelShader::Create(pixelShaderPath))
 {
 }

@@ -10,14 +10,15 @@
 SceneManager::SceneManager() :
 	index_(0)
 {
-	sceneGenerators_.emplace_back(std::bind(ImageScene::Create, "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/ImagePixelShader.pso"));
-	sceneGenerators_.emplace_back(std::bind(ImageScene::Create, "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/Kuwahara2DShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ImageScene::Create, "通常の画像の描画を行うシーン", "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/ImagePixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ImageScene::Create, "Kuwaharaフィルターを適用したシーン", "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/Kuwahara2DShader.pso"));
 	sceneGenerators_.emplace_back(ConstantBufferScene::Create);
-	sceneGenerators_.emplace_back(std::bind(MultiRenderTargetScene::Create, "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/MultiRT2DPixelShader.pso", 4));
-	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "Assets/Model/cube.mv1", "Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
-	sceneGenerators_.emplace_back(std::bind(
-		ModelForAllFrameScene::Create,
-		"Assets/Model/human.mv1", 
+	sceneGenerators_.emplace_back(std::bind(MultiRenderTargetScene::Create, "マルチレンダーターゲットを使用したシーン", "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/MultiRT2DPixelShader.pso", 4));
+	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "ボーンがないモデルの描画を行うシーン", "Assets/Model/cube.mv1", "Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "法線マップを適用したボーンがないモデルの描画を行うシーン", "Assets/Model/rock.mv1", "Assets/ShaderBinary/Vertex/ModelNormal1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelNormalPixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ModelForAllFrameScene::Create,
+		"ボーンを持つモデルの描画を行うシーン",
+		"Assets/Model/human.mv1",
 		"Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso",
 		"Assets/ShaderBinary/Vertex/Model4FrameVertexShader.vso",
 		"Assets/ShaderBinary/Vertex/Model8FrameVertexShader.vso",
@@ -57,7 +58,7 @@ void SceneManager::Draw(void) const
 	scene_->GetScreen().Draw(0.0f, 0.0f, true);		//シーンのスクリーンに対して描画
 
 	//描画情報表示
-	DrawFormatString(0, 0, 0xffffff, "DrawCall:%d\nProcessTime:%.6f", GetDrawCallCount(), stopWatch_.GetNowCount());
+	DrawFormatString(0, 0, 0xffffff, "%s\nDrawCall:%d\nProcessTime:%.6f", scene_->GetName().c_str(), GetDrawCallCount(), stopWatch_.GetNowCount());
 }
 
 void SceneManager::ChangeScene(void)
