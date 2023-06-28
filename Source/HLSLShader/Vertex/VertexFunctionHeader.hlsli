@@ -3,6 +3,7 @@
 	#define VERTEX_FUNCTION_HEADER
 
 	#include "../Common/CommonFunctionHeader.hlsli"
+	#include "VertexStructuresHeader.hlsli"
 
 	/// @brief ローカル→ワールドのブレンド行列の作成
 	/// @param indices ボーン処理用インデックス
