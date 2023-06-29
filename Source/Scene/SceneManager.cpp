@@ -15,6 +15,7 @@ SceneManager::SceneManager() :
 	sceneGenerators_.emplace_back(ConstantBufferScene::Create);
 	sceneGenerators_.emplace_back(std::bind(MultiRenderTargetScene::Create, "マルチレンダーターゲットを使用したシーン", "Assets/Image/texture0.png", "Assets/ShaderBinary/Pixel/MultiRT2DPixelShader.pso", 4));
 	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "ボーンがないモデルの描画を行うシーン", "Assets/Model/cube.mv1", "Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelPixelShader.pso"));
+	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "パールシェーダーを適用したシーン", "Assets/Model/monkey.mv1", "Assets/ShaderBinary/Vertex/Model1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/PearlShader.pso"));
 	sceneGenerators_.emplace_back(std::bind(ModelFor1FrameScene::Create, "法線マップを適用したボーンがないモデルの描画を行うシーン", "Assets/Model/rock.mv1", "Assets/ShaderBinary/Vertex/ModelNormal1FrameVertexShader.vso", "Assets/ShaderBinary/Pixel/ModelNormalPixelShader.pso"));
 	sceneGenerators_.emplace_back(std::bind(ModelForAllFrameScene::Create,
 		"ボーンを持つモデルの描画を行うシーン",

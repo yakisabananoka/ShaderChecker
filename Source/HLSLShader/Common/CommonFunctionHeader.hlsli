@@ -4,6 +4,128 @@
 
 	#include "CommonStructuresHeader.hlsli"
 
+	/// @brief 各要素の内、最大値の要素を返す
+	/// @param vec 任意のベクトル
+	/// @return 最大値の要素
+	float VecMax(in float3 vec)
+	{
+	    return max(vec.r, max(vec.g, vec.b));
+	}
+
+	/// @brief 各要素の内、最小値の要素を返す
+	/// @param vec 任意のベクトル
+	/// @return 最小値の要素
+	float VecMin(in float3 vec)
+	{
+	    return min(vec.r, min(vec.g, vec.b));
+	}
+
+	/// @brief RGBからHSVに変換
+	/// @param color RGB
+	/// @return HSV
+	float3 RGBtoHSV(in float3 color)
+	{
+		const float3 clampedColor = saturate(color);
+
+	    float3 result = float3(0.f, 0.f, 0.f);
+
+	    const float maxValue = VecMax(clampedColor);
+	    const float minValue = VecMin(clampedColor);
+
+	    const float delta = maxValue - minValue;
+
+		//H(色相)の設定
+		if(delta > 0.0f)
+	    {
+	        if (maxValue == clampedColor.r)
+			{
+	            result.r = (clampedColor.g - clampedColor.b) / delta;
+	        }
+	        else if (maxValue == clampedColor.g)
+			{
+	            result.r = (clampedColor.b - clampedColor.r) / delta + 2.f;
+	        }
+			else
+			{
+	            result.r = (clampedColor.r - clampedColor.g) / delta + 4.f;
+	        }
+
+	        result.r /= 6.f;
+			if(result.r < 0.0f)
+			{
+	            result.r += 1.f;
+	        }
+	    }
+
+		//S(彩度)の設定
+		if(maxValue != 0.0f)
+	    {
+	        result.g = delta / maxValue;
+	    }
+
+		//V(明度)の設定
+		result.b = maxValue;
+
+	    return result;
+	}
+
+	/// @brief HSVからRGBに変換
+	/// @param color HSV
+	/// @return RGB
+	float3 HSVtoRGB(in float3 color)
+	{
+		float3 clampedColor = saturate(color);
+	    float3 result = float3(clampedColor.b, clampedColor.b, clampedColor.b);
+
+		if(clampedColor.g != 0.0f)
+		{
+	        clampedColor.r *= 6.f;
+	        const float f = clampedColor.r - floor(clampedColor.r);
+	        const float a = clampedColor.b * (1 - clampedColor.g);
+	        const float b = clampedColor.b * (1 - clampedColor.g * f);
+	        const float c = clampedColor.b * (1 - clampedColor.g * (1 - f));
+
+			if(clampedColor.r < 1)
+			{
+	            result.r = clampedColor.b;
+	            result.g = c;
+	            result.b = a;
+	        }
+			else if(clampedColor.r < 2)
+			{
+	            result.r = b;
+	            result.g = clampedColor.b;
+	            result.b = a;
+	        }
+	        else if (clampedColor.r < 3)
+	        {
+	            result.r = a;
+	            result.g = clampedColor.b;
+	            result.b = c;
+	        }
+	        else if (clampedColor.r < 4)
+	        {
+	            result.r = a;
+	            result.g = b;
+	            result.b = clampedColor.b;
+	        }
+	        else if (clampedColor.r < 5)
+	        {
+	            result.r = c;
+	            result.g = a;
+	            result.b = clampedColor.b;
+	        }
+	        else
+	        {
+	            result.r = clampedColor.b;
+	            result.g = a;
+	            result.b = b;
+	        }
+	    }
+
+	    return result;
+	}
+
 	/// @brief XorShift法での疑似乱数生成
 	/// @param seed シード値
 	/// @return 疑似乱数

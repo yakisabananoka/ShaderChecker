@@ -4,20 +4,6 @@ PS_OUTPUT main(PS_INPUT input) : SV_TARGET
 {
     float4 result = float4(1.0f, 1.0f, 1.0f, 1.0f);
 
-    //テクスチャがある場合はそれを考慮した処理を行う
-    uint2 diffuseMapSize;
-    diffuseMapTexture.GetDimensions(diffuseMapSize.x, diffuseMapSize.y);
-    if(diffuseMapSize.x * diffuseMapSize.y > 0)
-    {
-        float4 texColor = diffuseMapTexture.Sample(diffuseMapSampler, input.uv);
-        if (texColor.a == 0.0f)
-        {
-            discard;
-        }
-        
-        result *= texColor;
-    }
-
     const float3 ray = normalize(input.viewPos);            //カメラ→自身のベクトル
     const float3 normal = normalize(input.viewNorm);        //法線(ビュー)
 
