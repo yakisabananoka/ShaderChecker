@@ -7,6 +7,11 @@ class PixelShader final :
 	public Shader
 {
 public:
+	class Info
+	{
+		
+	};
+
 	/// @brief 生成関数
 	/// @param path ファイルパス
 	/// @return ピクセルシェーダー

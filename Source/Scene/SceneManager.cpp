@@ -1,11 +1,11 @@
 ﻿#include "SceneManager.h"
 #include "Scene.h"
 #include "Graphics/Drawable/Screen.h"
-#include "Scene/Deriverd/2D/ImageScene.h"
-#include "Scene/Deriverd/2D/ConstantBufferScene.h"
-#include "Scene/Deriverd/2D/MultiRenderTargetScene.h"
-#include "Scene/Deriverd/3D/ModelFor1FrameScene.h"
-#include "Scene/Deriverd/3D/ModelForAllFrameScene.h"
+#include "Scene/Derived/2D/ImageScene.h"
+#include "Scene/Derived/2D/ConstantBufferScene.h"
+#include "Scene/Derived/2D/MultiRenderTargetScene.h"
+#include "Scene/Derived/3D/ModelFor1FrameScene.h"
+#include "Scene/Derived/3D/ModelForAllFrameScene.h"
 
 SceneManager::SceneManager() :
 	index_(0)

@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <filesystem>
-#include <functional>
 #include <DxLib.h>
 #include "Graphics/UsingGraphics.h"
 
@@ -8,6 +7,27 @@
 class Model
 {
 public:
+	/// @brief カスタムマテリアル
+	class Material
+	{
+	public:
+		virtual ~Material() = default;
+
+		/// @brief 開始処理
+		/// @param index マテリアルインデックス
+		virtual void Begin(int index) const = 0;
+
+		/// @brief 終了処理
+		/// @param index マテリアルインデックス
+		virtual void End(int index) const = 0;
+
+		Material(const Material&) = delete;
+		Material& operator=(const Material&) = delete;
+
+		Material(Material&&) = delete;
+		Material& operator=(Material&&) = delete;
+	};
+
 	/// @brief 生成関数
 	/// @param path ファイルパス
 	/// @return モデル

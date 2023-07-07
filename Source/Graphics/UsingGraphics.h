@@ -20,6 +20,8 @@ class PixelShader;
 class Camera;
 class PerspectiveCamera;
 
+class Material;
+
 template<typename T>
 using ImagePtrTemplate = std::shared_ptr<T>;
 template<typename T>
@@ -75,3 +77,11 @@ using CameraWeakPtrTemplate = std::weak_ptr<T>;
 using CameraPtr = CameraPtrTemplate<Camera>;
 using CameraWeakPtr = CameraWeakPtrTemplate<Camera>;
 using PerspectiveCameraPtr = CameraPtrTemplate<PerspectiveCamera>;
+
+template<typename T>
+using MaterialPtrTemplate = std::shared_ptr<T>;
+template<typename T>
+using MaterialWeakPtrTemplate = std::weak_ptr<T>;
+
+using MaterialPtr = MaterialPtrTemplate<Material>;
+using MaterialWeakPtr = MaterialWeakPtrTemplate<Material>;
